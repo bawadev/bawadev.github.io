@@ -1,20 +1,18 @@
-name: publish
+name: GitHub Pages
 
 on:
   push:
     branches:
-      - writer  # Set a branch name to trigger deployment
+      - main  # Set a branch to deploy
   pull_request:
 
 jobs:
   deploy:
     runs-on: ubuntu-22.04
-    permissions:
-      contents: main
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
@@ -22,18 +20,15 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.92.2'
+          hugo-version: '0.119.0'
+          # extended: true
 
       - name: Build
         run: hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        # If you're changing the branch from main,
-        # also change the `main` in `refs/heads/main`
-        # below accordingly.
-        if: github.ref == 'refs/heads/writer'
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          # cname: bawadev.github.io
