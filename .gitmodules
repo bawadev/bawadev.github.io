@@ -1,0 +1,3 @@
+[submodule "e-cleanwhite"]
+	path = e-cleanwhite
+	url = https://github.com/zhaohuabing/hugo-theme-cleanwhite.git
