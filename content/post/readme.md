@@ -1,10 +1,10 @@
 ---
 layout:     post
-title:      "Clean White Theme for Hugo"
-subtitle:   "How to set up this theme"
-date:       2019-01-09
-author:     "赵化冰"
-image:      "https://img.zhaohuabing.com/post-bg-2015.jpg"
+title:      "Java Lambda: All you need to know to code"
+subtitle:   "The most practical way to understand Java Lambda"
+date:       2024-01-09
+author:     "Pasindu"
+image:      "https://www.educative.io/v2api/editorpage/5947956966981632/image/5758486424584192"
 ---
 
 # Clean White Theme for Hugo
