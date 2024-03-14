@@ -17,7 +17,7 @@ home = ["HTML", "RSS", "Algolia"]
   SEOTitle = "BawaDev"
   description = "Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you"
   keyword = "Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice"
-  slogan = "Success is not outside. It's a Mindset"
+  slogan = "Life is a programme. Code it yourself."
   upstreamAttribution = true
 
   image_404 = "img/404-bg.jpg"
