@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      "Clean White Theme for Hugo"
-subtitle:   "How to set up this theme"
-date:       2019-01-09
-author:     "赵化冰"
-image:      "https://img.zhaohuabing.com/post-bg-2015.jpg"
+title:      "Java Lambda: All you need to know to code"
+subtitle:   "The most practical way to understand Java Lambda"
+date:       2024-01-09
+author:     "Pasindu"
+image:      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.infoworld.com%2Farticle%2F3452018%2Fget-started-with-lambda-expressions.html&psig=AOvVaw0t6y53TwUM_uHUoMj9tlQS&ust=1710174771108000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIjT9s6P6oQDFQAAAAAdAAAAABAE"
 ---
 
-# Clean White Theme for Hugo
+# Java Lambda: All you need to know to code
 
 CleanWhite is a clean, elegant, but fully functional blog theme for Hugo. Here is a live [demo site](https://zhaohuabing.com) using this theme.  
 

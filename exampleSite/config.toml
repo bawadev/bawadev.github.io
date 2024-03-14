@@ -13,15 +13,15 @@ hasCJKLanguage = true
 home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  header_image = "img/home-bg-jeep.jpg"
-  SEOTitle = "赵化冰的博客 | Zhaohuabing Blog"
-  description = "赵化冰，程序员, 开源爱好者，生活探险家 | 这里是 赵化冰 的博客，与你一起发现更大的世界。"
-  keyword = "赵化冰, zhaohuabing, Zhaohuabing, , 赵化冰的网络日志, 赵化冰的博客, Zhaohuabing Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
-  slogan = "路在脚下，心向远方"
+  header_image = "img/home-bg-jeep.png"
+  SEOTitle = "Zhaohuabing's Blog | Zhaohuabing Blog"
+  description = "Zhao Huabing, Programmer, Open Source Enthusiast, Life Adventurer | This is Zhao Huabing's blog, exploring a bigger world with you."
+  keyword = "Zhao Huabing, zhaohuabing, Zhaohuabing, Zhao Huabing's Blog, Blog, Personal Website, Internet, Web, Cloud Native, PaaS, Istio, Kubernetes, Microservice"
+  slogan = "The road is under your feet, the heart is towards the distance"
   upstreamAttribution = true
 
   image_404 = "img/404-bg.jpg"
-  title_404 = "你来到了没有知识的荒原 :("
+  title_404 = "You've arrived at a knowledge desert :("
   omit_categories = false
 
   # leancloud storage for page view counter
@@ -30,13 +30,13 @@ home = ["HTML", "RSS", "Algolia"]
   leancloud_app_key = ""
 
   # algolia site search
-  algolia_search = true
+  algolia_search = false
   algolia_appId = ""
   algolia_indexName = ""
   algolia_apiKey = ""
 
   # Sidebar settings
-  sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
+  sidebar_about_description = "Software Developer, Open Source Enthusiast, Life Adventurer"
   #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
   sidebar_avatar = "img/zhaohuabing.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
 
@@ -57,9 +57,9 @@ home = ["HTML", "RSS", "Algolia"]
 
   #Enable wechat pay & alipay to allow readers send reward money if they like the articles 
   reward = true 
-  # reward_guide = "如果这篇文章对你有用,请随意打赏" 
+  # reward_guide = "If this article is helpful to you, please feel free to reward."
 
-  friends = true
+  friends = false
   bookmarks = false
   about_me = true
 
@@ -89,7 +89,7 @@ home = ["HTML", "RSS", "Algolia"]
   #git           = "full profile url for git user"
   
   [[params.friend_link]]
-  title = "Linda的博客"
+  title = "Linda's Blog"
   href =  "https://zhaozhihan.com"
 
   [[params.bookmark_link]]
