@@ -1,4 +1,4 @@
-baseurl = "https://zhaohuabing.com"
+baseurl = "https://bawadev.github.io"
 title = "BawaDev"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"
