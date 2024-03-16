@@ -5,12 +5,12 @@ subtitle:   "The most practical way to understand Java Lambda"
 date:       2024-01-09
 author:     "Pasindu"
 image:      "https://www.educative.io/v2api/editorpage/5947956966981632/image/5758486424584192"
+summary: "Java lambdas provide a concise way to express instances of single-method interfaces (functional interfaces). They enhance code readability and maintainability by allowing you to write more compact and expressive code for functional programming constructs. Lambdas also facilitate the use of functional interfaces in the Java API, making it easier to work with collections and streams. Overall, they contribute to more efficient and modern Java programming practices."
 ---
-
-### Why we need java Lambda
 
 Java lambdas provide a concise way to express instances of single-method interfaces (functional interfaces). They enhance code readability and maintainability by allowing you to write more compact and expressive code for functional programming constructs. Lambdas also facilitate the use of functional interfaces in the Java API, making it easier to work with collections and streams. Overall, they contribute to more efficient and modern Java programming practices.
 
+## Features
 
 #### 1. Functional Interface:
 
@@ -68,20 +68,11 @@ Runnable lambdaRunnable = () -> System.out.println("Running task");
 These examples demonstrate how lambda expressions simplify code for functional interfaces, iteration, comparison, and defining simple tasks.
 
 ### Influence of Java Script on Lambda
-JavaScript syntax heavily influenced the introduction of lambda expressions in Java. The popularity of functional programming concepts in JavaScript, particularly the use of anonymous functions, closures, and concise syntax, played a significant role in shaping the design of Java lambdas.
-#### 1. Concisenes:
-JavaScript's concise syntax for anonymous functions and closures influenced the decision to create a more concise syntax for lambda expressions in Java. This enhances readability and reduces boilerplate code.
-#### 2. Functional Programming Style:
-JavaScript's emphasis on functional programming influenced Java to incorporate more functional features. Lambdas allow Java to adopt functional programming paradigms, making it more expressive and flexible.
-#### 3. Higher-Order Functions:
-JavaScript's support for higher-order functions (functions that take functions as arguments or return functions) inspired Java to enhance its capabilities in this area. Lambdas enable the use of higher-order functions in Java, making it more versatile.
-#### 4. Arrow Function Similarity:
-JavaScript's arrow function syntax (() => {}) has similarities with Java's lambda syntax ((parameters) -> {}). The arrow syntax is concise and aligns with the idea of expressing functions in a more compact form.
-By drawing inspiration from JavaScript, Java aimed to modernize its syntax and programming model, making it more competitive and appealing to developers familiar with functional programming concepts. The adoption of lambdas has brought a more expressive and functional style to Java programming.
+So, you know how JavaScript is all about those short and sweet anonymous functions and closures, right? Well, turns out Java took a cue from that vibe and introduced lambda expressions, making Java code a lot more concise and readable. Plus, since JavaScript is big on functional programming, Java wanted in on the action, so they added lambdas to make Java more flexible and expressive. And hey, you know those arrow functions in JavaScript? Java's lambdas kinda rock a similar vibe, making code look snappier and cooler. Basically, Java looked at JavaScript, thought, "Hey, that's pretty cool," and decided to spruce itself up, making it more competitive and fun for devs who dig functional programming.
 
 
 ### What are the things should know when writing lambda
-When writing lambda expressions in Java, there are several important considerations to keep in mind:
+When writing lambda expressions in Java, there are several important considerations to keep in mind. 
 
 #### 1. Functional Interfaces:
 Lambdas are used with functional interfaces (interfaces with a single abstract method). Ensure that the interface you are working with is a valid functional interface.
@@ -216,7 +207,7 @@ public class LambdaExample {
     }
 }
 ```
-In this example, we've created a lambda expression (message) -> System.out.println("Hello, " + message) that implements the myFunction method of the MyLambda functional interface. We then use this lambda to print a greeting.
+In this example, we've created a lambda expression (message) -> System.out.println("Hello, " + message) that implements the myFunction method of the MyLambda functional interface. We then use this lambda to print a greeting using the variable it stored in.
 
 #### Explanation:
 A functional interface is an interface with a single abstract method. In this case, MyLambda serves as our functional interface.
@@ -305,13 +296,15 @@ In this example, the Collections.sort method is used to sort the list of Person 
 The lambda expression takes two Person objects, person1 and person2, and compares their ages using the getAge method. The result of the comparison determines the order of the objects in the sorted list.
 
 When you run this program, it will display the list of people sorted by age:
-
+```s
 Sorted People List:
 Person{name='Charlie', age=22}
 Person{name='Alice', age=25}
 Person{name='Bob', age=30}
+```
 This demonstrates how you can use lambda expressions to customize the sorting behavior for a list of custom objects.
 
-
 ### Summary:
-This blog post provides a comprehensive overview of Java lambda expressions, covering their importance, syntax, usage, and examples. It starts by explaining the significance of lambda expressions in Java, emphasizing their role in simplifying code for functional interfaces, iteration, comparison, and defining simple tasks. The post highlights how Java adopted lambda expressions, drawing inspiration from JavaScript's functional programming concepts.
+This post provides a comprehensive overview of Java lambda expressions, covering their importance, syntax, usage, and examples. It starts by explaining the significance of lambda expressions in Java, emphasizing their role in simplifying code for functional interfaces, iteration, comparison, and defining simple tasks. The post highlights how Java adopted lambda expressions, drawing inspiration from JavaScript's functional programming concepts.
+
+---
