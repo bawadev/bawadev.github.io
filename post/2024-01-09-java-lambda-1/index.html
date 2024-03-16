@@ -13,9 +13,9 @@
 <meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
 <meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
 <meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
-<meta property="twitter:card" content="summary">
+<meta property="twitter:card" content="Java lambdas provide a concise way to express instances of single-method interfaces (functional interfaces). They enhance code readability and maintainability by allowing you to write more compact and expressive code for functional programming constructs. Lambdas also facilitate the use of functional interfaces in the Java API, making it easier to work with collections and streams. Overall, they contribute to more efficient and modern Java programming practices.">
 <meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
-<link rel="shortcut icon" href=/img/favicon.ico>
+<link rel="shortcut icon" href=/img/favicon.png>
 <title>Java Lambda: All you need to know to code | BawaDev</title>
 <link rel=canonical href=/post/2024-01-09-java-lambda-1/>
 <link rel=stylesheet href=/css/bootstrap.min.css>
@@ -67,10 +67,6 @@
 <h1>Java Lambda: All you need to know to code</h1>
 <h2 class=subheading>The most practical way to understand Java Lambda</h2>
 <span class=meta>
-Posted by
-Pasindu
-on
-Tuesday, January 9, 2024
 </span>
 </div>
 </div>
@@ -83,8 +79,8 @@ Tuesday, January 9, 2024
 <div class="col-lg-8 col-lg-offset-2
 col-md-10 col-md-offset-1
 post-container">
-<h3 id=why-we-need-java-lambda>Why we need java Lambda</h3>
 <p>Java lambdas provide a concise way to express instances of single-method interfaces (functional interfaces). They enhance code readability and maintainability by allowing you to write more compact and expressive code for functional programming constructs. Lambdas also facilitate the use of functional interfaces in the Java API, making it easier to work with collections and streams. Overall, they contribute to more efficient and modern Java programming practices.</p>
+<h2 id=features>Features</h2>
 <h4 id=1-functional-interface>1. Functional Interface:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#6272a4>// Before lambda expressions
 </span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>interface</span> <span style=color:#50fa7b>MyFunction</span> <span style=color:#ff79c6>{</span>
@@ -129,18 +125,9 @@ post-container">
 </span><span style=color:#6272a4></span>Runnable lambdaRunnable <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>()</span> <span style=color:#ff79c6>-&gt;</span> System<span style=color:#ff79c6>.</span><span style=color:#50fa7b>out</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>println</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Running task&#34;</span><span style=color:#ff79c6>);</span>
 </code></pre></div><p>These examples demonstrate how lambda expressions simplify code for functional interfaces, iteration, comparison, and defining simple tasks.</p>
 <h3 id=influence-of-java-script-on-lambda>Influence of Java Script on Lambda</h3>
-<p>JavaScript syntax heavily influenced the introduction of lambda expressions in Java. The popularity of functional programming concepts in JavaScript, particularly the use of anonymous functions, closures, and concise syntax, played a significant role in shaping the design of Java lambdas.</p>
-<h4 id=1-concisenes>1. Concisenes:</h4>
-<p>JavaScript&rsquo;s concise syntax for anonymous functions and closures influenced the decision to create a more concise syntax for lambda expressions in Java. This enhances readability and reduces boilerplate code.</p>
-<h4 id=2-functional-programming-style>2. Functional Programming Style:</h4>
-<p>JavaScript&rsquo;s emphasis on functional programming influenced Java to incorporate more functional features. Lambdas allow Java to adopt functional programming paradigms, making it more expressive and flexible.</p>
-<h4 id=3-higher-order-functions>3. Higher-Order Functions:</h4>
-<p>JavaScript&rsquo;s support for higher-order functions (functions that take functions as arguments or return functions) inspired Java to enhance its capabilities in this area. Lambdas enable the use of higher-order functions in Java, making it more versatile.</p>
-<h4 id=4-arrow-function-similarity>4. Arrow Function Similarity:</h4>
-<p>JavaScript&rsquo;s arrow function syntax (() => {}) has similarities with Java&rsquo;s lambda syntax ((parameters) -> {}). The arrow syntax is concise and aligns with the idea of expressing functions in a more compact form.
-By drawing inspiration from JavaScript, Java aimed to modernize its syntax and programming model, making it more competitive and appealing to developers familiar with functional programming concepts. The adoption of lambdas has brought a more expressive and functional style to Java programming.</p>
+<p>So, you know how JavaScript is all about those short and sweet anonymous functions and closures, right? Well, turns out Java took a cue from that vibe and introduced lambda expressions, making Java code a lot more concise and readable. Plus, since JavaScript is big on functional programming, Java wanted in on the action, so they added lambdas to make Java more flexible and expressive. And hey, you know those arrow functions in JavaScript? Java&rsquo;s lambdas kinda rock a similar vibe, making code look snappier and cooler. Basically, Java looked at JavaScript, thought, &ldquo;Hey, that&rsquo;s pretty cool,&rdquo; and decided to spruce itself up, making it more competitive and fun for devs who dig functional programming.</p>
 <h3 id=what-are-the-things-should-know-when-writing-lambda>What are the things should know when writing lambda</h3>
-<p>When writing lambda expressions in Java, there are several important considerations to keep in mind:</p>
+<p>When writing lambda expressions in Java, there are several important considerations to keep in mind.</p>
 <h4 id=1-functional-interfaces>1. Functional Interfaces:</h4>
 <p>Lambdas are used with functional interfaces (interfaces with a single abstract method). Ensure that the interface you are working with is a valid functional interface.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#6272a4>// Functional interface
@@ -245,7 +232,7 @@ By keeping these considerations in mind, you can write effective and clean lambd
 </span><span style=color:#6272a4></span>        myLambda<span style=color:#ff79c6>.</span><span style=color:#50fa7b>myFunction</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;World&#34;</span><span style=color:#ff79c6>);</span>
     <span style=color:#ff79c6>}</span>
 <span style=color:#ff79c6>}</span>
-</code></pre></div><p>In this example, we&rsquo;ve created a lambda expression (message) -> System.out.println(&ldquo;Hello, " + message) that implements the myFunction method of the MyLambda functional interface. We then use this lambda to print a greeting.</p>
+</code></pre></div><p>In this example, we&rsquo;ve created a lambda expression (message) -> System.out.println(&ldquo;Hello, " + message) that implements the myFunction method of the MyLambda functional interface. We then use this lambda to print a greeting using the variable it stored in.</p>
 <h4 id=explanation>Explanation:</h4>
 <p>A functional interface is an interface with a single abstract method. In this case, MyLambda serves as our functional interface.</p>
 <p>The lambda expression (message) -> System.out.println(&ldquo;Hello, " + message) is a concise way of representing an instance of the functional interface. It takes a String parameter named message and prints a greeting.</p>
@@ -315,13 +302,14 @@ Functional Programming Paradigm:</p>
 </code></pre></div><p>In this example, the Collections.sort method is used to sort the list of Person objects based on their age. The lambda expression (person1, person2) -> person1.getAge() - person2.getAge() defines the comparison logic for sorting.</p>
 <p>The lambda expression takes two Person objects, person1 and person2, and compares their ages using the getAge method. The result of the comparison determines the order of the objects in the sorted list.</p>
 <p>When you run this program, it will display the list of people sorted by age:</p>
-<p>Sorted People List:
-Person{name=&lsquo;Charlie&rsquo;, age=22}
-Person{name=&lsquo;Alice&rsquo;, age=25}
-Person{name=&lsquo;Bob&rsquo;, age=30}
-This demonstrates how you can use lambda expressions to customize the sorting behavior for a list of custom objects.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-s data-lang=s>Sorted People List<span style=color:#ff79c6>:</span>
+Person{name<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;Charlie&#39;</span>, age<span style=color:#ff79c6>=</span><span style=color:#bd93f9>22</span>}
+Person{name<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;Alice&#39;</span>, age<span style=color:#ff79c6>=</span><span style=color:#bd93f9>25</span>}
+Person{name<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;Bob&#39;</span>, age<span style=color:#ff79c6>=</span><span style=color:#bd93f9>30</span>}
+</code></pre></div><p>This demonstrates how you can use lambda expressions to customize the sorting behavior for a list of custom objects.</p>
 <h3 id=summary>Summary:</h3>
-<p>This blog post provides a comprehensive overview of Java lambda expressions, covering their importance, syntax, usage, and examples. It starts by explaining the significance of lambda expressions in Java, emphasizing their role in simplifying code for functional interfaces, iteration, comparison, and defining simple tasks. The post highlights how Java adopted lambda expressions, drawing inspiration from JavaScript&rsquo;s functional programming concepts.</p>
+<p>This post provides a comprehensive overview of Java lambda expressions, covering their importance, syntax, usage, and examples. It starts by explaining the significance of lambda expressions in Java, emphasizing their role in simplifying code for functional interfaces, iteration, comparison, and defining simple tasks. The post highlights how Java adopted lambda expressions, drawing inspiration from JavaScript&rsquo;s functional programming concepts.</p>
+<hr>
 <div class=zs-modal-bg></div>
 <div class=zs-modal-box>
 <div class=zs-modal-head>
@@ -350,6 +338,13 @@ This demonstrates how you can use lambda expressions to customize the sorting be
 </div>
 </div>
 <script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=next>
+<a href=/post/2024-01-16-java-spring-beans/ data-toggle=tooltip data-placement=top title="Exploring the Blooming World of Spring Beans: A Beginner's Guide">Next
+Post &rarr;</a>
+</li>
+</ul>
 </div>
 <div class="col-lg-2 col-lg-offset-0
 visible-lg-block

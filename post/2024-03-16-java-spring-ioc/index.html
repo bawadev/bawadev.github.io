@@ -1,0 +1,350 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://palmersrelocations.com.au/wp-content/uploads/2021/05/Should-I-Hire-or-Buy-a-Shipping-Container-1080x628.jpg">
+<meta property="twitter:image" content="https://palmersrelocations.com.au/wp-content/uploads/2021/05/Should-I-Hire-or-Buy-a-Shipping-Container-1080x628.jpg">
+<meta name=title content="Demystifying IOC Containers: A Beginner's Guide">
+<meta property="og:title" content="Demystifying IOC Containers: A Beginner's Guide">
+<meta property="twitter:title" content="Demystifying IOC Containers: A Beginner's Guide">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="summary">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>Demystifying IOC Containers: A Beginner's Guide | BawaDev</title>
+<link rel=canonical href=/post/2024-03-16-java-spring-ioc/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/archive//>ARCHIVE</a></li>
+<li><a href=/notes//>NOTES</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://palmersrelocations.com.au/wp-content/uploads/2021/05/Should-I-Hire-or-Buy-a-Shipping-Container-1080x628.jpg)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+</div>
+<h1>Demystifying IOC Containers: A Beginner's Guide</h1>
+<h2 class=subheading>Java Spring beans and what they do..</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<p>In the realm of software development, there exists a concept that often perplexes beginners: Inversion of Control (IOC) containers. While the term may sound daunting, understanding IOC containers is pivotal for mastering modern software architecture. In this guide, we&rsquo;ll unravel the mysteries surrounding IOC containers, elucidating their significance and benefits for beginners.</p>
+<h2 id=understanding-ioc-containers>Understanding IOC Containers</h2>
+<p>At its core, Inversion of Control (IOC) is a design principle aimed at decoupling dependencies within a software system. Traditionally, in a tightly coupled system, components directly instantiate their dependencies. However, with IOC, this control is inverted, allowing a container to manage and inject dependencies into components.</p>
+<p>An IOC container serves as a reservoir for managing object creation and dependency injection. It acts as a mediator between components, orchestrating the flow of dependencies within an application. By relinquishing control over dependency instantiation to the container, developers achieve greater flexibility and modularity in their codebase.</p>
+<h2 id=benefits-of-ioc-containers>Benefits of IOC Containers</h2>
+<ol>
+<li>
+<p><strong>Decoupling Components</strong>: IOC containers facilitate loose coupling between components by removing explicit dependency instantiation. Components are unaware of how their dependencies are created or configured, promoting modularity and maintainability.</p>
+</li>
+<li>
+<p><strong>Dependency Injection</strong>: With IOC containers, dependencies are injected into components rather than being hardcoded. This enhances testability, as dependencies can be easily substituted with mock objects during unit testing, facilitating the adoption of test-driven development practices.</p>
+</li>
+<li>
+<p><strong>Configuration Management</strong>: IOC containers centralize configuration settings, allowing developers to manage dependencies and their configurations from a single source. This promotes consistency and simplifies maintenance across the application.</p>
+</li>
+<li>
+<p><strong>Promoting Reusability</strong>: By decoupling components and their dependencies, IOC containers encourage the reuse of existing code. Components become more portable and can be easily integrated into different contexts, fostering code reusability and scalability.</p>
+</li>
+<li>
+<p><strong>Facilitating Dependency Resolution</strong>: IOC containers handle the resolution of dependencies, automatically instantiating and wiring components together. This alleviates the burden on developers, reducing the complexity associated with managing object creation manually.</p>
+</li>
+</ol>
+<h2 id=getting-started-with-ioc-containers>Getting Started with IOC Containers</h2>
+<p>To incorporate IOC containers into your projects, follow these steps:</p>
+<ol>
+<li>
+<p><strong>Choose an IOC Container</strong>: There are various IOC container libraries available for different programming languages, such as Spring for Java, Unity for .NET, and Dagger for Android. Select a container that aligns with your project&rsquo;s requirements and language preferences.</p>
+</li>
+<li>
+<p><strong>Define Dependencies</strong>: Identify the dependencies within your application and configure them within the IOC container. Specify how dependencies should be instantiated and injected into components.</p>
+</li>
+<li>
+<p><strong>Configure Container</strong>: Configure the IOC container with the necessary bindings and configurations. This entails mapping interfaces to concrete implementations and specifying any runtime parameters or dependencies.</p>
+</li>
+<li>
+<p><strong>Utilize Dependency Injection</strong>: Modify your components to accept dependencies through constructor injection or setter injection. Let the IOC container handle the injection of dependencies during runtime.</p>
+</li>
+<li>
+<p><strong>Test and Iterate</strong>: Test your application to ensure that dependencies are injected correctly and components function as expected. Iterate on your configuration as needed, refining your use of the IOC container over time.</p>
+</li>
+</ol>
+<h2 id=example-code-with-java-and-spring>Example Code with Java and Spring</h2>
+<h3 id=example-1-dependency-injection-with-spring>Example 1: Dependency Injection with Spring</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#6272a4>// UserRepository.java
+</span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>interface</span> <span style=color:#50fa7b>UserRepository</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>save</span><span style=color:#ff79c6>(</span>User user<span style=color:#ff79c6>);</span>
+<span style=color:#ff79c6>}</span>
+
+<span style=color:#6272a4>// UserRepositoryImpl.java
+</span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>UserRepositoryImpl</span> <span style=color:#8be9fd;font-style:italic>implements</span> UserRepository <span style=color:#ff79c6>{</span>
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>save</span><span style=color:#ff79c6>(</span>User user<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// Implementation to save user to the database
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+
+<span style=color:#6272a4>// UserService.java
+</span><span style=color:#6272a4></span><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>UserService</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> UserRepository userRepository<span style=color:#ff79c6>;</span>
+
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>UserService</span><span style=color:#ff79c6>(</span>UserRepository userRepository<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>userRepository</span> <span style=color:#ff79c6>=</span> userRepository<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>saveUser</span><span style=color:#ff79c6>(</span>User user<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        userRepository<span style=color:#ff79c6>.</span><span style=color:#50fa7b>save</span><span style=color:#ff79c6>(</span>user<span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+
+<span style=color:#6272a4>// Spring Configuration (applicationContext.xml)
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>&lt;</span>beans xmlns<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;http://www.springframework.org/schema/beans&#34;</span>
+       xmlns<span style=color:#ff79c6>:</span>xsi<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+       xsi<span style=color:#ff79c6>:</span>schemaLocation<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;http://www.springframework.org/schema/beans
+</span><span style=color:#f1fa8c>                           http://www.springframework.org/schema/beans/spring-beans.xsd&#34;</span><span style=color:#ff79c6>&gt;</span>
+
+    <span style=color:#ff79c6>&lt;!--</span> Define UserRepository bean <span style=color:#ff79c6>--&gt;</span>
+    <span style=color:#ff79c6>&lt;</span>bean id<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;userRepository&#34;</span> class<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;com.example.UserRepositoryImpl&#34;</span><span style=color:#ff79c6>/&gt;</span>
+
+    <span style=color:#ff79c6>&lt;!--</span> Define UserService bean and inject UserRepository <span style=color:#ff79c6>--&gt;</span>
+    <span style=color:#ff79c6>&lt;</span>bean id<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;userService&#34;</span> class<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;com.example.UserService&#34;</span><span style=color:#ff79c6>&gt;</span>
+        <span style=color:#ff79c6>&lt;</span>constructor<span style=color:#ff79c6>-</span>arg ref<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;userRepository&#34;</span><span style=color:#ff79c6>/&gt;</span>
+    <span style=color:#ff79c6>&lt;/</span>bean<span style=color:#ff79c6>&gt;</span>
+<span style=color:#ff79c6>&lt;/</span>beans<span style=color:#ff79c6>&gt;</span>
+
+<span style=color:#6272a4>// Main Application
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> org.springframework.context.ApplicationContext<span style=color:#ff79c6>;</span>
+<span style=color:#ff79c6>import</span> org.springframework.context.support.ClassPathXmlApplicationContext<span style=color:#ff79c6>;</span>
+
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MainApp</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>static</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>main</span><span style=color:#ff79c6>(</span>String<span style=color:#ff79c6>[]</span> args<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// Load Spring configuration
+</span><span style=color:#6272a4></span>        ApplicationContext context <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> ClassPathXmlApplicationContext<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;applicationContext.xml&#34;</span><span style=color:#ff79c6>);</span>
+
+        <span style=color:#6272a4>// Retrieve UserService bean from Spring container
+</span><span style=color:#6272a4></span>        UserService userService <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>(</span>UserService<span style=color:#ff79c6>)</span> context<span style=color:#ff79c6>.</span><span style=color:#50fa7b>getBean</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;userService&#34;</span><span style=color:#ff79c6>);</span>
+
+        <span style=color:#6272a4>// Create a user and save using UserService
+</span><span style=color:#6272a4></span>        User user <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> User<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;John Doe&#34;</span><span style=color:#ff79c6>);</span>
+        userService<span style=color:#ff79c6>.</span><span style=color:#50fa7b>saveUser</span><span style=color:#ff79c6>(</span>user<span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><h3 id=example-2-annotation-based-configuration-with-spring>Example 2: Annotation-based Configuration with Spring</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#6272a4>// UserService.java (with annotations)
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> org.springframework.beans.factory.annotation.Autowired<span style=color:#ff79c6>;</span>
+<span style=color:#ff79c6>import</span> org.springframework.stereotype.Service<span style=color:#ff79c6>;</span>
+
+@Service
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>UserService</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd;font-style:italic>final</span> UserRepository userRepository<span style=color:#ff79c6>;</span>
+
+    @Autowired
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>UserService</span><span style=color:#ff79c6>(</span>UserRepository userRepository<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>userRepository</span> <span style=color:#ff79c6>=</span> userRepository<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>saveUser</span><span style=color:#ff79c6>(</span>User user<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        userRepository<span style=color:#ff79c6>.</span><span style=color:#50fa7b>save</span><span style=color:#ff79c6>(</span>user<span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+
+<span style=color:#6272a4>// Main Application (with annotations)
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> org.springframework.context.ApplicationContext<span style=color:#ff79c6>;</span>
+<span style=color:#ff79c6>import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext<span style=color:#ff79c6>;</span>
+
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MainApp</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>static</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>main</span><span style=color:#ff79c6>(</span>String<span style=color:#ff79c6>[]</span> args<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// Load Spring configuration from annotated classes
+</span><span style=color:#6272a4></span>        ApplicationContext context <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> AnnotationConfigApplicationContext<span style=color:#ff79c6>(</span>AppConfig<span style=color:#ff79c6>.</span><span style=color:#50fa7b>class</span><span style=color:#ff79c6>);</span>
+
+        <span style=color:#6272a4>// Retrieve UserService bean from Spring container
+</span><span style=color:#6272a4></span>        UserService userService <span style=color:#ff79c6>=</span> context<span style=color:#ff79c6>.</span><span style=color:#50fa7b>getBean</span><span style=color:#ff79c6>(</span>UserService<span style=color:#ff79c6>.</span><span style=color:#50fa7b>class</span><span style=color:#ff79c6>);</span>
+
+        <span style=color:#6272a4>// Create a user and save using UserService
+</span><span style=color:#6272a4></span>        User user <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> User<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Jane Smith&#34;</span><span style=color:#ff79c6>);</span>
+        userService<span style=color:#ff79c6>.</span><span style=color:#50fa7b>saveUser</span><span style=color:#ff79c6>(</span>user<span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><p>In these examples, Spring&rsquo;s IOC container manages the instantiation of dependencies and injects them into the respective components, showcasing the power and simplicity of IOC containers in Java applications.</p>
+<p>These examples demonstrate how IOC containers like Spring simplify dependency management and promote modularity in Java applications.</p>
+<pre tabindex=0><code></code></pre>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/2024-01-16-java-spring-beans/ data-toggle=tooltip data-placement=top title="Exploring the Blooming World of Spring Beans: A Beginner's Guide">&larr;
+Previous Post</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<div class=side-catalog>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TAGS</a></h5>
+<div class=tags>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>
