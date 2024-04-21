@@ -1,0 +1,373 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png">
+<meta property="twitter:image" content="https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png">
+<meta name=title content="A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)">
+<meta property="og:title" content="A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)">
+<meta property="twitter:title" content="A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="summary">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>A Beginner's Guide to Secure Communication in Web Development (SSL/TLS) | BawaDev</title>
+<link rel=canonical href=/post/2024-04-21-java-security-part-https/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/archive//>ARCHIVE</a></li>
+<li><a href=/notes//>NOTES</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+</div>
+<h1>A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)</h1>
+<h2 class=subheading>How to bring HTTPS to your app</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<p>In today&rsquo;s digital landscape, secure communication is essential for building safe, reliable web applications. As a beginner developer, understanding the concepts of encryption, HTTPS, Keystore,Trustore, Mutual TLS (mTLS), and secure configurations in Spring Boot is crucial. This guide provides an overview of these topics, complete with explanations and examples.</p>
+<h2 id=table-of-contents>Table of Contents</h2>
+<ul>
+<li><a href=#understanding-encryption>Understanding Encryption</a></li>
+<li><a href=#secure-web-communication-with-https>Secure Web Communication with HTTPS</a></li>
+<li><a href=#mutual-tls-mtls-enhanced-security>Mutual TLS (mTLS): Enhanced Security</a></li>
+<li><a href=#configuring-spring-boot-for-https>Configuring Spring Boot for HTTPS</a></li>
+<li><a href=#making-https-accessible-over-the-internet>Making HTTPS Accessible over the Internet</a></li>
+<li><a href=#conclusion>Conclusion</a></li>
+</ul>
+<h2 id=understanding-encryption>Understanding Encryption</h2>
+<p>Encryption is the process of converting information into a code to prevent unauthorized access. There are two main types of encryption you need to be aware of:</p>
+<h3 id=symmetric-key-encryption>Symmetric Key Encryption</h3>
+<ul>
+<li><strong>Symmetric Key Encryption</strong>: Uses the same key for both encryption and decryption. It&rsquo;s fast and efficient, making it suitable for large data transfers.</li>
+</ul>
+<h3 id=asymmetric-key-encryption-pki>Asymmetric Key Encryption (PKI)</h3>
+<ul>
+<li><strong>Asymmetric Key Encryption (PKI)</strong>: Also known as Public Key Infrastructure, this method uses a pair of keys: a public key (shared with anyone) and a private key (kept secret). It&rsquo;s slower than symmetric encryption but offers enhanced security.</li>
+</ul>
+<h2 id=understanding-ssltls-and-keystores>Understanding SSL/TLS and Keystores</h2>
+<h3 id=ssltls>SSL/TLS:</h3>
+<p>SSL (Secure Sockets Layer) and TLS (Transport Layer Security) are protocols used to encrypt data transmitted between a client and a server. They provide confidentiality, integrity, and authentication.</p>
+<h3 id=keystore>Keystore:</h3>
+<p>A keystore is a file that contains a collection of keys and certificates. It includes your server&rsquo;s private key and its signed certificate, which allows the server to identify itself and establish a secure connection.</p>
+<h3 id=truststore>Truststore:</h3>
+<p>A truststore is a file that contains trusted certificates from Certificate Authorities (CAs). It allows the server to verify the authenticity of incoming certificates from clients.</p>
+<h2 id=secure-web-communication-with-https>Secure Web Communication with HTTPS</h2>
+<p>HTTPS (Hypertext Transfer Protocol Secure) is a secure version of HTTP that encrypts data transmitted between a user&rsquo;s browser and a server using SSL/TLS protocols. Here&rsquo;s how HTTPS works:</p>
+<ol>
+<li>
+<p><strong>Certificate Generation</strong>:</p>
+<ul>
+<li>A web server generates a public-private key pair and creates a Certificate Signing Request (CSR).</li>
+<li>The server submits the CSR to a Certificate Authority (CA).</li>
+</ul>
+</li>
+<li>
+<p><strong>Certificate Issuance</strong>:</p>
+<ul>
+<li>The CA verifies the CSR and issues a signed certificate. This certificate includes a hash value, a secret key, and certificate details.</li>
+</ul>
+</li>
+<li>
+<p><strong>Browser Validation</strong>:</p>
+<ul>
+<li>When a user connects to the server, the server sends its signed certificate.</li>
+<li>The browser validates the certificate using root certificates stored in its trust store.</li>
+<li>Once validated, the browser generates a symmetric key, encrypts it with the server&rsquo;s public key, and sends it back.</li>
+</ul>
+</li>
+<li>
+<p><strong>Secure Communication</strong>:</p>
+<ul>
+<li>The server decrypts the symmetric key using its private key.</li>
+<li>This symmetric key is then used for further secure communication.</li>
+</ul>
+</li>
+</ol>
+<h2 id=mutual-tls-mtls-enhanced-security>Mutual TLS (mTLS): Enhanced Security</h2>
+<p>Mutual TLS (mTLS) adds an extra layer of security by authenticating both the server and the client during the TLS handshake. This approach is ideal for scenarios where both parties need to verify each other&rsquo;s identity.</p>
+<ul>
+<li>
+<p><strong>Key Steps in mTLS</strong>:</p>
+<ul>
+<li>Both the client and server create CSRs and obtain certificates from a CA.</li>
+<li>During the TLS handshake, both sides validate each other&rsquo;s certificates using their respective trust stores.</li>
+<li>We call server side trustore &ldquo;keysore&rdquo;</li>
+</ul>
+</li>
+<li>
+<p><strong>Use Cases</strong>:</p>
+<ul>
+<li>mTLS is particularly useful in internal APIs, microservices architectures, and scenarios where secure communication between client and server is critical.</li>
+</ul>
+</li>
+</ul>
+<h2 id=configuring-spring-boot-for-https>Configuring Spring Boot for HTTPS</h2>
+<p>Spring Boot provides built-in support for configuring SSL/TLS. Here&rsquo;s how you can set up an HTTPS server in a Spring Boot application:</p>
+<ol>
+<li>
+<p><strong>Add Dependencies</strong>:</p>
+<ul>
+<li>Ensure your <code>pom.xml</code> file includes the <code>spring-boot-starter-web</code> and <code>spring-boot-starter-security</code> dependencies.</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#ff79c6>&lt;dependencies&gt;</span>
+    <span style=color:#ff79c6>&lt;dependency&gt;</span>
+        <span style=color:#ff79c6>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#ff79c6>&lt;/groupId&gt;</span>
+        <span style=color:#ff79c6>&lt;artifactId&gt;</span>spring-boot-starter-web<span style=color:#ff79c6>&lt;/artifactId&gt;</span>
+    <span style=color:#ff79c6>&lt;/dependency&gt;</span>
+    <span style=color:#ff79c6>&lt;dependency&gt;</span>
+        <span style=color:#ff79c6>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#ff79c6>&lt;/groupId&gt;</span>
+        <span style=color:#ff79c6>&lt;artifactId&gt;</span>spring-boot-starter-security<span style=color:#ff79c6>&lt;/artifactId&gt;</span>
+    <span style=color:#ff79c6>&lt;/dependency&gt;</span>
+<span style=color:#ff79c6>&lt;/dependencies&gt;</span>
+</code></pre></div></li>
+<li>
+<p><strong>Generate Keystore and Truststore</strong>:</p>
+<ul>
+<li>
+<p><strong>Generate Keystore</strong>: Use <code>keytool</code> to generate a private key and obtain a signed certificate from a CA, then save them in a keystore.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>keytool -genkeypair -alias myserver -keyalg RSA -keysize <span style=color:#bd93f9>2048</span> -storetype PKCS12 -keystore keystore.p12 -validity <span style=color:#bd93f9>365</span>
+</code></pre></div></li>
+<li>
+<p><strong>Generate Truststore</strong>: Optionally, create a truststore with trusted certificates from CAs.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>keytool -importcert -alias myca -keystore truststore.jks -file myca.crt
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>Configure SSL/TLS in <code>application.properties</code></strong>:</p>
+<ul>
+<li>Configure the HTTPS settings in your Spring Boot application&rsquo;s <code>application.properties</code> file.</li>
+</ul>
+<pre tabindex=0><code class=language-properties data-lang=properties>server.port=443
+server.ssl.key-store=classpath:keystore.p12
+server.ssl.key-store-password=your-keystore-password
+server.ssl.key-store-type=PKCS12
+server.ssl.trust-store=classpath:truststore.jks
+server.ssl.trust-store-password=your-truststore-password
+</code></pre></li>
+</ol>
+<h2 id=summary>Summary</h2>
+<p>In summary too make your Spring Boot application accessible over the internet using HTTPS, follow these steps:</p>
+<ol>
+<li>
+<p><strong>Obtain a Public Certificate from a Trusted CA</strong>:</p>
+<ul>
+<li>Obtain a public SSL/TLS certificate from a trusted CA (e.g., Let&rsquo;s Encrypt, DigiCert).</li>
+<li>Import the certificate into your keystore.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure Network and Firewall Settings</strong>:</p>
+<ul>
+<li>Open port 443 for HTTPS traffic in your server&rsquo;s firewall settings.</li>
+<li>Ensure your server has a public IP address or use a domain name service (DNS) to point your domain to the server&rsquo;s IP address.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure DNS Records</strong>:</p>
+<ul>
+<li>Add an &ldquo;A&rdquo; record in your domain&rsquo;s DNS settings to map your domain name to your server&rsquo;s public IP address.</li>
+</ul>
+</li>
+<li>
+<p><strong>Run your Spring Boot Application</strong>:</p>
+<ul>
+<li>Start your Spring Boot application. It should now be running on port 443 and accessible over the internet using HTTPS.</li>
+<li>Make sure adding the necessary configs to applications</li>
+</ul>
+</li>
+<li>
+<p><strong>Maintain Security and Certificates</strong>:</p>
+<ul>
+<li>Keep your SSL/TLS certificates updated and renewed before they expire.</li>
+<li>Follow best practices for key management and security settings.</li>
+</ul>
+</li>
+</ol>
+<h2 id=conclusion>Conclusion</h2>
+<p>By understanding and implementing encryption, HTTPS, mTLS, and secure configurations in your Spring Boot application, you can build web applications that maintain high standards of data privacy and security. Always follow security best practices and monitor your server&rsquo;s settings to ensure safe and reliable communication over the internet.</p>
+<hr>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/2024-03-16-java-spring-ioc/ data-toggle=tooltip data-placement=top title="Demystifying IOC Containers: A Beginner's Guide">&larr;
+Previous Post</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<div class=side-catalog>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TAGS</a></h5>
+<div class=tags>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>
