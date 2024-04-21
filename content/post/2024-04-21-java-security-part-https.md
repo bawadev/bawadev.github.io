@@ -7,16 +7,9 @@ author:     "Pasindu"
 image:      "https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png"
 
 ---
+
 In today's digital landscape, secure communication is essential for building safe, reliable web applications. As a beginner developer, understanding the concepts of encryption, HTTPS, Keystore,Trustore, Mutual TLS (mTLS), and secure configurations in Spring Boot is crucial. This guide provides an overview of these topics, complete with explanations and examples.
 
-## Table of Contents
-
-- [Understanding Encryption](#understanding-encryption)
-- [Secure Web Communication with HTTPS](#secure-web-communication-with-https)
-- [Mutual TLS (mTLS): Enhanced Security](#mutual-tls-mtls-enhanced-security)
-- [Configuring Spring Boot for HTTPS](#configuring-spring-boot-for-https)
-- [Making HTTPS Accessible over the Internet](#making-https-accessible-over-the-internet)
-- [Conclusion](#conclusion)
 
 ## Understanding Encryption
 
