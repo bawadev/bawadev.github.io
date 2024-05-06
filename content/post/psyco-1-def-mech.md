@@ -12,7 +12,7 @@ tags:
 
 Hey there! Have you ever wondered why sometimes you or people around you act in certain ways that just don’t seem to make sense? Well, welcome to the fascinating world of defense mechanisms! These are like your mind's secret agents, working behind the scenes to protect you from stuff that might be too uncomfortable to handle head-on.
 
-So, What Exactly Are Defense Mechanisms?
+So, What Exactly Are Defense Mechanisms ?
 
 Think of defense mechanisms as your mind’s way of dealing with difficult emotions or thoughts without you even realizing it. It’s like your brain’s built-in safety net for when things get tough. These sneaky little strategies were first talked about by the legendary Sigmund Freud, the father of psychoanalysis. But they’re still a hot topic in psychology today.
 
