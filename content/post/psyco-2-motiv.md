@@ -4,6 +4,8 @@ title:      "Understanding Motivation"
 subtitle:   "The Driving Force of Human Behavior"
 date:       2024-04-21
 author:     "Pasindu"
+tags:
+    - PSYCHOLOGY
 image:      "https://media.istockphoto.com/id/1291008201/photo/man-in-red-shirt-preparing-for-stair-run.jpg?s=612x612&w=0&k=20&c=dmlyOH9z1zoHLAROv7GfrzlZe398VHjJQT0FQ8OLX1o="
 summary: "Motivation is the spark that ignites action, the force that propels individuals towards their goals. Embedded within the intricate web of human psychology, motivation dictates the direction, intensity, and persistence of our behaviors. In this article, we embark on a journey through the labyrinth of motivation theories, unraveling the essence of what moves us."
 ---

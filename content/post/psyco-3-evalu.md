@@ -4,6 +4,8 @@ title:      "Evelution and develping stages of field of psycology"
 subtitle:   "From Structuralism to Health Psychology"
 date:       2024-04-21
 author:     "Pasindu"
+tags:
+    - PSYCHOLOGY
 image:      "https://static.scientificamerican.com/sciam/cache/file/76748970-35A8-4B77-976CD498C2151A27_source.jpg?w=1200"
 summary: "Hey there, fellow psychology enthusiasts! Let's take a stroll through the colorful landscape of psychology, where every twist and turn reveals a new facet of the human mind and behavior. From the foundational concepts of Structuralism to the cutting-edge frontiers of Health Psychology, buckle up for a wild ride through the evolution of psychological thought."
 ---

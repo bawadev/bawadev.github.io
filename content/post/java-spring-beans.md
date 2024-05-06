@@ -5,6 +5,11 @@ subtitle:   "Java Spring beans and what they do.."
 date:       2024-01-10
 author:     "Pasindu"
 image:      "https://www.themanual.com/wp-content/uploads/sites/9/2023/05/fresh-green-beans.jpg"
+tags:
+    - JAVA
+    - DEVELOPMENTS
+summary: "As the chilly grip of winter loosens its hold, nature awakens from its slumber, and so does the world of software development with the arrival of Spring. No, we're not talking about the season of blossoms and new beginnings, but rather about Spring Framework – a versatile and powerful framework for building robust Java applications.
+"
 
 ---
 

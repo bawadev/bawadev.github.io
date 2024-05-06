@@ -6,6 +6,9 @@ date:       2024-04-21
 author:     "Pasindu"
 image:      "https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png"
 summary: "In today's digital landscape, secure communication is essential for building safe, reliable web applications. As a beginner developer, understanding the concepts of encryption, HTTPS, Keystore,Trustore, Mutual TLS (mTLS), and secure configurations in Spring Boot is crucial. This guide provides an overview of these topics, complete with explanations and examples.. "
+tags:
+    - JAVA
+    - DEVELOPMENTS
 
 ---
 

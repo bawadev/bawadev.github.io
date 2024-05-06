@@ -5,6 +5,10 @@ subtitle:   "Java Spring beans and what they do.."
 date:       2024-01-12
 author:     "Pasindu"
 image:      "https://palmersrelocations.com.au/wp-content/uploads/2021/05/Should-I-Hire-or-Buy-a-Shipping-Container-1080x628.jpg"
+summary: "In the realm of software development, there exists a concept that often perplexes beginners: Inversion of Control (IOC) containers. While the term may sound daunting, understanding IOC containers is pivotal for mastering modern software architecture. In this guide, we'll unravel the mysteries surrounding IOC containers, elucidating their significance and benefits for beginners."
+tags:
+    - JAVA
+    - DEVELOPMENTS
 
 ---
 
