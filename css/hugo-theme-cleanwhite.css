@@ -66,6 +66,9 @@ body{
     color:#404040;
     overflow-x:hidden
 }
+.navbar-brand .a{
+    font-family: "Georgia-Bold";
+}
 p{
     margin:30px 0
 }
