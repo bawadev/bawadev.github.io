@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Evelution and develping stages of field of psycology"
+title:      "Evolution and developing stages in field of psychology"
 subtitle:   "From Structuralism to Health Psychology"
 date:       2024-04-21
 author:     "Pasindu"
