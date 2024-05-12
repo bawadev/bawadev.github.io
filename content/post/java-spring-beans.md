@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Exploring the Blooming World of Spring Beans: A Beginner's Guide"
-subtitle:   "Java Spring beans and what they do.."
+title:      "Spring Beans: A Beginner's Guide"
+subtitle:   "Java Spring beans and what they do"
 date:       2024-01-10
 author:     "Pasindu"
 image:      "https://www.themanual.com/wp-content/uploads/sites/9/2023/05/fresh-green-beans.jpg"
@@ -13,7 +13,7 @@ summary: "As the chilly grip of winter loosens its hold, nature awakens from its
 
 ---
 
-# Exploring the Blooming World of Spring Beans: A Beginner's Guide
+# Spring Beans: What are they
 
 As the chilly grip of winter loosens its hold, nature awakens from its slumber, and so does the world of software development with the arrival of Spring. No, we're not talking about the season of blossoms and new beginnings, but rather about Spring Framework – a versatile and powerful framework for building robust Java applications.
 
