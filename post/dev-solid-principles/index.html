@@ -1,0 +1,624 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.freecodecamp.org/news/content/images/size/w2000/2020/08/solid.png">
+<meta property="twitter:image" content="https://www.freecodecamp.org/news/content/images/size/w2000/2020/08/solid.png">
+<meta name=title content="Solid Principles in Java">
+<meta property="og:title" content="Solid Principles in Java">
+<meta property="twitter:title" content="Solid Principles in Java">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="The SOLID principles are a set of guidelines for writing object-oriented code that is maintainable, extensible, and easy to understand.">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>Solid Principles in Java | BawaDev</title>
+<link rel=canonical href=/post/dev-solid-principles/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/gallery//>Gallery</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://www.freecodecamp.org/news/content/images/size/w2000/2020/08/solid.png)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+<a class=tag href=/%20/tags/solid title=SOLID>
+SOLID
+</a>
+<a class=tag href=/%20/tags/java title=Java>
+Java
+</a>
+<a class=tag href=/%20/tags/design-principles title="Design principles">
+Design principles
+</a>
+</div>
+<h1>Solid Principles in Java</h1>
+<h2 class=subheading>Understand the SOLID principles</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<p>The SOLID principles are a set of guidelines for writing object-oriented code that is maintainable, extensible, and easy to understand. These principles are:</p>
+<ol>
+<li>Single Responsibility Principle (SRP)</li>
+<li>Open/Closed Principle (OCP)</li>
+<li>Liskov Substitution Principle (LSP)</li>
+<li>Interface Segregation Principle (ISP)</li>
+<li>Dependency Inversion Principle (DIP)
+In this article, we will discuss each of these principles in detail, along with examples and explanations.</li>
+</ol>
+<h2 id=single-responsibility-principle-srp>Single Responsibility Principle (SRP)</h2>
+<p>The single responsibility principle states that a class should have only one reason to change. This means that a class should be responsible for only one task or set of related tasks. For example, a <code>Customer</code> class should not be responsible for handling orders and payments as well. Instead, it should focus on managing customer information.
+Here&rsquo;s an example of how SRP can be applied in Java:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Order</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String productName<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>Order</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>id</span> <span style=color:#ff79c6>=</span> id<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>productName</span> <span style=color:#ff79c6>=</span> productName<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>price</span> <span style=color:#ff79c6>=</span> price<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#6272a4>// getters and setters for id, productName, and price
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Payment</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>double</span> amount<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String paymentMethod<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>Payment</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> amount<span style=color:#ff79c6>,</span> String paymentMethod<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>id</span> <span style=color:#ff79c6>=</span> id<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>amount</span> <span style=color:#ff79c6>=</span> amount<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>paymentMethod</span> <span style=color:#ff79c6>=</span> paymentMethod<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#6272a4>// getters and setters for id, amount, and paymentMethod
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Customer</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String name<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> List<span style=color:#ff79c6>&lt;</span>Order<span style=color:#ff79c6>&gt;</span> orders<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> List<span style=color:#ff79c6>&lt;</span>Payment<span style=color:#ff79c6>&gt;</span> payments<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>Customer</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String name<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>id</span> <span style=color:#ff79c6>=</span> id<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>name</span> <span style=color:#ff79c6>=</span> name<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>orders</span> <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> ArrayList<span style=color:#ff79c6>&lt;&gt;();</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>payments</span> <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> ArrayList<span style=color:#ff79c6>&lt;&gt;();</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#6272a4>// getters and setters for id, name, orders, and payments
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+</code></pre></div><p>In this example, we have separated the responsibilities of managing orders and payments into separate classes (<code>Order</code> and <code>Payment</code>). This makes it easier to modify or extend these classes without affecting the functionality of the <code>Customer</code> class.</p>
+<h2 id=openclosed-principle-ocp>Open/Closed Principle (OCP)</h2>
+<p>The open-closed principle states that a software entity (class, module, function, etc.) should be open for extension but closed for modification. This means that we should be able to add new functionality to a class without modifying its existing code. For example, we can add a new <code>calculateTotalPrice</code> method to the <code>Order</code> class without modifying its existing methods.
+Here&rsquo;s an example of how OCP can be applied in Java:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>abstract</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Order</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>protected</span> <span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>protected</span> String productName<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>protected</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>Order</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>id</span> <span style=color:#ff79c6>=</span> id<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>productName</span> <span style=color:#ff79c6>=</span> productName<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>price</span> <span style=color:#ff79c6>=</span> price<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>abstract</span> <span style=color:#8be9fd>double</span> <span style=color:#50fa7b>calculateTotalPrice</span><span style=color:#ff79c6>();</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>NormalOrder</span> <span style=color:#8be9fd;font-style:italic>extends</span> Order <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>int</span> quantity<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>NormalOrder</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>int</span> quantity<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#8be9fd;font-style:italic>super</span><span style=color:#ff79c6>(</span>id<span style=color:#ff79c6>,</span> productName<span style=color:#ff79c6>,</span> price<span style=color:#ff79c6>);</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>quantity</span> <span style=color:#ff79c6>=</span> quantity<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>double</span> <span style=color:#50fa7b>calculateTotalPrice</span><span style=color:#ff79c6>()</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>return</span> getQuantity<span style=color:#ff79c6>()</span> <span style=color:#ff79c6>*</span> getPrice<span style=color:#ff79c6>();</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>DiscountedOrder</span> <span style=color:#8be9fd;font-style:italic>extends</span> Order <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>double</span> discountPercentage<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>DiscountedOrder</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> discountPercentage<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#8be9fd;font-style:italic>super</span><span style=color:#ff79c6>(</span>id<span style=color:#ff79c6>,</span> productName<span style=color:#ff79c6>,</span> price<span style=color:#ff79c6>);</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>discountPercentage</span> <span style=color:#ff79c6>=</span> discountPercentage<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>double</span> <span style=color:#50fa7b>calculateTotalPrice</span><span style=color:#ff79c6>()</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>return</span> getPrice<span style=color:#ff79c6>()</span> <span style=color:#ff79c6>*</span> <span style=color:#ff79c6>(</span>1 <span style=color:#ff79c6>-</span> getDiscountPercentage<span style=color:#ff79c6>());</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><p>In this example, we have defined an abstract <code>Order</code> class with a <code>calculateTotalPrice</code> method. We can then create concrete subclasses (<code>NormalOrder</code> and <code>DiscountedOrder</code>) that extend the <code>Order</code> class and override the <code>calculateTotalPrice</code> method to add their own specific functionality.</p>
+<h2 id=liskov-substitution-principle-lsp>Liskov Substitution Principle (LSP)</h2>
+<p>The Liskov substitution principle states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program. This means that a subclass should be able to be used in place of its parent class without any unexpected behavior. For example, we can use a <code>DiscountedOrder</code> object in place of a regular <code>Order</code> object without any issues.
+Here&rsquo;s an example of how LSP can be applied in Java:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>abstract</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Order</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>protected</span> <span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>protected</span> String productName<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>protected</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>Order</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>id</span> <span style=color:#ff79c6>=</span> id<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>productName</span> <span style=color:#ff79c6>=</span> productName<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>price</span> <span style=color:#ff79c6>=</span> price<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>abstract</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>processOrder</span><span style=color:#ff79c6>();</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>NormalOrder</span> <span style=color:#8be9fd;font-style:italic>extends</span> Order <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>int</span> quantity<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>NormalOrder</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>int</span> quantity<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#8be9fd;font-style:italic>super</span><span style=color:#ff79c6>(</span>id<span style=color:#ff79c6>,</span> productName<span style=color:#ff79c6>,</span> price<span style=color:#ff79c6>);</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>quantity</span> <span style=color:#ff79c6>=</span> quantity<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>processOrder</span><span style=color:#ff79c6>()</span> <span style=color:#ff79c6>{</span>
+        System<span style=color:#ff79c6>.</span><span style=color:#50fa7b>out</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>println</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Processing normal order with ID: &#34;</span> <span style=color:#ff79c6>+</span> getId<span style=color:#ff79c6>());</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>DiscountedOrder</span> <span style=color:#8be9fd;font-style:italic>extends</span> Order <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>double</span> discountPercentage<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>DiscountedOrder</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> discountPercentage<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#8be9fd;font-style:italic>super</span><span style=color:#ff79c6>(</span>id<span style=color:#ff79c6>,</span> productName<span style=color:#ff79c6>,</span> price<span style=color:#ff79c6>);</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>discountPercentage</span> <span style=color:#ff79c6>=</span> discountPercentage<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>processOrder</span><span style=color:#ff79c6>()</span> <span style=color:#ff79c6>{</span>
+        System<span style=color:#ff79c6>.</span><span style=color:#50fa7b>out</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>println</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Processing discounted order with ID: &#34;</span> <span style=color:#ff79c6>+</span> getId<span style=color:#ff79c6>());</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><p>In this example, we have defined an abstract <code>Order</code> class with a <code>processOrder</code> method. We can then create concrete subclasses (<code>NormalOrder</code> and <code>DiscountedOrder</code>) that extend the <code>Order</code> class and override the <code>processOrder</code> method to add their own specific functionality. Since both subclasses extend the <code>Order</code> class, they can be used interchangeably without any issues.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Main</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>static</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>main</span><span style=color:#ff79c6>(</span>String<span style=color:#ff79c6>[]</span> args<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        Order order1 <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> NormalOrder<span style=color:#ff79c6>(</span>1<span style=color:#ff79c6>,</span> <span style=color:#f1fa8c>&#34;Product A&#34;</span><span style=color:#ff79c6>,</span> 10<span style=color:#ff79c6>.</span><span style=color:#50fa7b>0</span><span style=color:#ff79c6>,</span> 5<span style=color:#ff79c6>);</span>
+        Order order2 <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> DiscountedOrder<span style=color:#ff79c6>(</span>2<span style=color:#ff79c6>,</span> <span style=color:#f1fa8c>&#34;Product B&#34;</span><span style=color:#ff79c6>,</span> 20<span style=color:#ff79c6>.</span><span style=color:#50fa7b>0</span><span style=color:#ff79c6>,</span> 10<span style=color:#ff79c6>);</span>
+        
+        List<span style=color:#ff79c6>&lt;</span>Order<span style=color:#ff79c6>&gt;</span> orders <span style=color:#ff79c6>=</span> Arrays<span style=color:#ff79c6>.</span><span style=color:#50fa7b>asList</span><span style=color:#ff79c6>(</span>order1<span style=color:#ff79c6>,</span> order2<span style=color:#ff79c6>);</span>
+        
+        <span style=color:#ff79c6>for</span> <span style=color:#ff79c6>(</span>Order o <span style=color:#ff79c6>:</span> orders<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+            o<span style=color:#ff79c6>.</span><span style=color:#50fa7b>processOrder</span><span style=color:#ff79c6>();</span>
+        <span style=color:#ff79c6>}</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><p>In this example, we create a list of <code>Order</code> objects and pass it to a loop that calls the <code>processOrder</code> method on each order object. Since both <code>NormalOrder</code> and <code>DiscountedOrder</code> extend the <code>Order</code> class, they can be used interchangeably without any issues.</p>
+<h2 id=interface-segregation-principle-isp>Interface Segregation Principle (ISP)</h2>
+<p>The interface segregation principle states that a client should not be forced to implement methods it does not use. This means that we should create separate interfaces for related but distinct sets of functionality. For example, we can create a <code>Payment</code> interface with methods for processing payments and a <code>Shipping</code> interface with methods for shipping orders.
+Here&rsquo;s an example of how ISP can be applied in Java:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>interface</span> <span style=color:#50fa7b>Payment</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>processPayment</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>double</span> amount<span style=color:#ff79c6>);</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>CreditCardPayment</span> <span style=color:#8be9fd;font-style:italic>implements</span> Payment <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String cardNumber<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>CreditCardPayment</span><span style=color:#ff79c6>(</span>String cardNumber<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>cardNumber</span> <span style=color:#ff79c6>=</span> cardNumber<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>processPayment</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>double</span> amount<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// Process credit card payment using card number
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>PayPalPayment</span> <span style=color:#8be9fd;font-style:italic>implements</span> Payment <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String emailAddress<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>PayPalPayment</span><span style=color:#ff79c6>(</span>String emailAddress<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>emailAddress</span> <span style=color:#ff79c6>=</span> emailAddress<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>processPayment</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>double</span> amount<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// Process PayPal payment using email address
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>interface</span> <span style=color:#50fa7b>Shipping</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>shipOrder</span><span style=color:#ff79c6>(</span>String orderNumber<span style=color:#ff79c6>);</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>UPSShipping</span> <span style=color:#8be9fd;font-style:italic>implements</span> Shipping <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String trackingNumber<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>UPSShipping</span><span style=color:#ff79c6>(</span>String trackingNumber<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>trackingNumber</span> <span style=color:#ff79c6>=</span> trackingNumber<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @Override
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>shipOrder</span><span style=color:#ff79c6>(</span>String orderNumber<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// Ship order using UPS tracking number
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Main</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>static</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>main</span><span style=color:#ff79c6>(</span>String<span style=color:#ff79c6>[]</span> args<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        Payment payment1 <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> CreditCardPayment<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;1234567890123456&#34;</span><span style=color:#ff79c6>);</span>
+        Payment payment2 <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> PayPalPayment<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;johndoe@email.com&#34;</span><span style=color:#ff79c6>);</span>
+        
+        Shipping shipping1 <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> UPSShipping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890&#34;</span><span style=color:#ff79c6>);</span>
+        Shipping shipping2 <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> UPSShipping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890&#34;</span><span style=color:#ff79c6>);</span>
+        
+        System<span style=color:#ff79c6>.</span><span style=color:#50fa7b>out</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>println</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Payment 1: &#34;</span> <span style=color:#ff79c6>+</span> payment1<span style=color:#ff79c6>);</span>
+        System<span style=color:#ff79c6>.</span><span style=color:#50fa7b>out</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>println</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Payment 2: &#34;</span> <span style=color:#ff79c6>+</span> payment2<span style=color:#ff79c6>);</span>
+        System<span style=color:#ff79c6>.</span><span style=color:#50fa7b>out</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>println</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Shipping 1: &#34;</span> <span style=color:#ff79c6>+</span> shipping1<span style=color:#ff79c6>);</span>
+        System<span style=color:#ff79c6>.</span><span style=color:#50fa7b>out</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>println</span><span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;Shipping 2: &#34;</span> <span style=color:#ff79c6>+</span> shipping2<span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><p>In this example, we have defined separate <code>Payment</code> and <code>Shipping</code> interfaces with methods for processing payments and shipping orders. We can then create concrete implementations of these interfaces (<code>CreditCardPayment</code>, <code>PayPalPayment</code>, <code>UPSShipping</code>) that add their own specific functionality. Since each implementation only implements the methods it needs, we can use them interchangeably without any issues.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>Order</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String productName<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>Order</span><span style=color:#ff79c6>(</span><span style=color:#8be9fd>int</span> id<span style=color:#ff79c6>,</span> String productName<span style=color:#ff79c6>,</span> <span style=color:#8be9fd>double</span> price<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>id</span> <span style=color:#ff79c6>=</span> id<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>productName</span> <span style=color:#ff79c6>=</span> productName<span style=color:#ff79c6>;</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>price</span> <span style=color:#ff79c6>=</span> price<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>setPayment</span><span style=color:#ff79c6>(</span>Payment payment<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>payment</span> <span style=color:#ff79c6>=</span> payment<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>setShipping</span><span style=color:#ff79c6>(</span>Shipping shipping<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>shipping</span> <span style=color:#ff79c6>=</span> shipping<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    <span style=color:#8be9fd;font-style:italic>private</span> Payment payment<span style=color:#ff79c6>;</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> Shipping shipping<span style=color:#ff79c6>;</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><p>In this example, we have defined an <code>Order</code> class with a <code>setPayment</code> and <code>setShipping</code> method that allows us to set the payment and shipping for an order. Since both <code>Payment</code> and <code>Shipping</code> interfaces have only one method each, we can use them interchangeably without any issues.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Order order1 <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>new</span> Order<span style=color:#ff79c6>(</span>1<span style=color:#ff79c6>,</span> <span style=color:#f1fa8c>&#34;Product A&#34;</span><span style=color:#ff79c6>,</span> 10<span style=color:#ff79c6>.</span><span style=color:#50fa7b>0</span><span style=color:#ff79c6>);</span>
+order1<span style=color:#ff79c6>.</span><span style=color:#50fa7b>setPayment</span><span style=color:#ff79c6>(</span>payment1<span style=color:#ff79c6>);</span>
+order1<span style=color:#ff79c6>.</span><span style=color:#50fa7b>setShipping</span><span style=color:#ff79c6>(</span>shipping1<span style=color:#ff79c6>);</span>
+</code></pre></div><p>In this example, we create an <code>Order</code> object and set the payment and shipping for it using the appropriate implementations of the <code>Payment</code> and <code>Shipping</code> interfaces. Since both implementations only implement the methods they need, we can use them interchangeably without any issues.</p>
+<p>Sure, here&rsquo;s an explanation of the Dependency Inversion Principle (DIP) from the SOLID principles in Markdown format:</p>
+<h2 id=dependency-inversion-principle-dip>Dependency Inversion Principle (DIP)</h2>
+<p>The Dependency Inversion Principle (DIP) is one of the five SOLID principles of object-oriented programming. It states that:</p>
+<ol>
+<li>High-level modules should not depend on low-level modules. Both should depend on abstractions.</li>
+<li>Abstractions should not depend on details. Details should depend on abstractions.</li>
+</ol>
+<p>In simpler terms, this principle suggests that the relationship between software modules should be based on abstractions rather than concrete implementations. By doing so, the higher-level modules are decoupled from the lower-level modules, promoting flexibility and ease of maintenance.</p>
+<p>Benefits of Dependency Inversion:</p>
+<ul>
+<li>Flexibility: Allows for easier changes and modifications in the system without affecting other parts of the codebase.</li>
+<li>Testability: Facilitates unit testing by enabling the use of mock objects or stubs for dependencies.</li>
+<li>Scalability: Helps in managing complexity and facilitating the addition of new features or components.</li>
+</ul>
+<p>Example:</p>
+<p>Consider a scenario where you have a <code>UserService</code> that needs to interact with a <code>Database</code> to fetch user data. Instead of directly depending on the concrete <code>Database</code> implementation, you can introduce an abstraction, such as an interface <code>IDatabase</code>, which both <code>UserService</code> and <code>Database</code> adhere to. This way, <code>UserService</code> depends on the abstraction (<code>IDatabase</code>), not on the concrete implementation (<code>Database</code>).</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#6272a4>// Abstraction
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>interface</span> IDatabase {
+    <span style=color:#ff79c6>void</span> Connect();
+    <span style=color:#ff79c6>void</span> Disconnect();
+    <span style=color:#6272a4>// Other methods...
+</span><span style=color:#6272a4></span>}
+
+<span style=color:#6272a4>// Concrete implementation
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>Database</span> : IDatabase {
+    <span style=color:#ff79c6>public</span> <span style=color:#ff79c6>void</span> Connect() {
+        <span style=color:#6272a4>// Connect to the database
+</span><span style=color:#6272a4></span>    }
+    <span style=color:#ff79c6>public</span> <span style=color:#ff79c6>void</span> Disconnect() {
+        <span style=color:#6272a4>// Disconnect from the database
+</span><span style=color:#6272a4></span>    }
+    <span style=color:#6272a4>// Other methods...
+</span><span style=color:#6272a4></span>}
+
+<span style=color:#6272a4>// High-level module
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>UserService</span> {
+    <span style=color:#ff79c6>private</span> <span style=color:#ff79c6>readonly</span> IDatabase <span style=color:#bd93f9>_d</span>atabase;
+
+    <span style=color:#ff79c6>public</span> UserService(IDatabase database) {
+        <span style=color:#bd93f9>_d</span>atabase = database;
+    }
+
+    <span style=color:#6272a4>// UserService methods using IDatabase abstraction
+</span><span style=color:#6272a4></span>}
+</code></pre></div><p>By adhering to the Dependency Inversion Principle, changes in the database implementation won&rsquo;t affect the <code>UserService</code> as long as the new implementation conforms to the <code>IDatabase</code> interface. This decoupling improves maintainability and facilitates easier code changes.</p>
+<p>So this is about it. I hope you got an usderstanding on SOLID principles. Happy Coding!!</p>
+<hr>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/psyco-1-def-mech/ data-toggle=tooltip data-placement=top title="Understanding Defense Mechanisms">&larr;
+Previous Post</a>
+</li>
+<li class=next>
+<a href=/post/dev-redux-toolkit/ data-toggle=tooltip data-placement=top title="Leveraging Redux Toolkit for Efficient State Management in React Applications">Next
+Post &rarr;</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<section class="visible-md visible-lg">
+<hr><h5><a href=/about>ABOUT AUTHOR</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=cursor:pointer>
+</a>
+<p>Pasindu Bawantha,Software Engineer, Tech Writer and Life Adventurer</p>
+<ul class=list-inline>
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<div class=side-catalog>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TOPIC</a></h5>
+<div class=tags>
+<a href=/%20/tags/design-principles title=design-principles>
+design-principles
+</a>
+<a href=/%20/tags/development title=development>
+development
+</a>
+<a href=/%20/tags/developments title=developments>
+developments
+</a>
+<a href=/%20/tags/front-end-developemnt title=front-end-developemnt>
+front-end-developemnt
+</a>
+<a href=/%20/tags/functional-interfaces title=functional-interfaces>
+functional-interfaces
+</a>
+<a href=/%20/tags/immutability title=immutability>
+immutability
+</a>
+<a href=/%20/tags/java title=java>
+java
+</a>
+<a href=/%20/tags/java-lambda title=java-lambda>
+java-lambda
+</a>
+<a href=/%20/tags/psychology title=psychology>
+psychology
+</a>
+<a href=/%20/tags/react title=react>
+react
+</a>
+<a href=/%20/tags/redux title=redux>
+redux
+</a>
+<a href=/%20/tags/security title=security>
+security
+</a>
+<a href=/%20/tags/solid title=solid>
+solid
+</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div class="visible-xs-block hidden-sm hidden-md hidden-lg">
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<section class="visible-md visible-lg visible-sm visible-xs-block">
+<hr><h5><a href=/about>ABOUT</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=max-width:200px;height:auto;cursor:pointer>
+</a>
+<p>Pasindu Bawantha,Software Engineer, Tech Writer and Life Adventurer</p>
+</div>
+</section>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</div>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>

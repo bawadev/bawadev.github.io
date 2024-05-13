@@ -5,19 +5,19 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta property="og:site_name" content="BawaDev">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png">
-<meta property="twitter:image" content="https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png">
-<meta name=title content="A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)">
-<meta property="og:title" content="A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)">
-<meta property="twitter:title" content="A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)">
+<meta property="og:image" content="![https://www.educative.io/v2api/editorpage/5947956966981632/image/5758486424584192](https://www.mangoresearch.co/wp-content/uploads/2018/05/blockchain-immutability.jpg)">
+<meta property="twitter:image" content="![https://www.educative.io/v2api/editorpage/5947956966981632/image/5758486424584192](https://www.mangoresearch.co/wp-content/uploads/2018/05/blockchain-immutability.jpg)">
+<meta name=title content="Embracing Immutability">
+<meta property="og:title" content="Embracing Immutability">
+<meta property="twitter:title" content="Embracing Immutability">
 <meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
 <meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
 <meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
-<meta property="twitter:card" content="In today's digital landscape, secure communication is essential for building safe, reliable web applications. As a beginner developer, understanding the concepts of encryption, HTTPS, Keystore,Trustore, Mutual TLS (mTLS), and secure configurations in Spring Boot is crucial. This guide provides an overview of these topics, complete with explanations and examples.. ">
+<meta property="twitter:card" content="Immutability, often hailed as a cornerstone of modern software development, offers a plethora of benefits ranging from enhanced predictability to streamlined memory management. In this comprehensive guide, we'll delve into the significance of immutability and how to harness its power effectively in both React and Java environments.">
 <meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
 <link rel="shortcut icon" href=/img/favicon.png>
-<title>A Beginner's Guide to Secure Communication in Web Development (SSL/TLS) | BawaDev</title>
-<link rel=canonical href=/post/java-security-part-https/>
+<title>Embracing Immutability | BawaDev</title>
+<link rel=canonical href=/post/dev-immutability/>
 <link rel=stylesheet href=/css/bootstrap.min.css>
 <link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
 <link rel=stylesheet href=/css/zanshang.css>
@@ -55,25 +55,25 @@
 </div>
 </nav>
 <script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
-<style type=text/css>header.intro-header{position:relative;background-image:url(https://cdn.ning.com/blog/wp-content/uploads/2017/10/HTTP-To-HTTPS.png)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<style type=text/css>header.intro-header{position:relative;background-image:url(#ZgotmplZ)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
 <header class=intro-header>
 <div class=container>
 <div class=row>
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 <div class=post-heading>
 <div class=tags>
-<a class=tag href=/%20/tags/java title=JAVA>
-JAVA
+<a class=tag href=/%20/tags/java title=Java>
+Java
 </a>
-<a class=tag href=/%20/tags/developments title=DEVELOPMENTS>
-DEVELOPMENTS
+<a class=tag href=/%20/tags/react title=React>
+React
 </a>
-<a class=tag href=/%20/tags/security title=security>
-security
+<a class=tag href=/%20/tags/immutability title=Immutability>
+Immutability
 </a>
 </div>
-<h1>A Beginner's Guide to Secure Communication in Web Development (SSL/TLS)</h1>
-<h2 class=subheading>How to bring HTTPS to your app</h2>
+<h1>Embracing Immutability</h1>
+<h2 class=subheading>An explanation using React and Java</h2>
 <span class=meta>
 </span>
 </div>
@@ -87,160 +87,55 @@ security
 <div class="col-lg-8 col-lg-offset-2
 col-md-10 col-md-offset-1
 post-container">
-<p>In today&rsquo;s digital landscape, secure communication is essential for building safe, reliable web applications. As a beginner developer, understanding the concepts of encryption, HTTPS, Keystore,Trustore, Mutual TLS (mTLS), and secure configurations in Spring Boot is crucial. This guide provides an overview of these topics, complete with explanations and examples..</p>
-<h2 id=understanding-encryption>Understanding Encryption</h2>
-<p>Encryption is the process of converting information into a code to prevent unauthorized access. There are two main types of encryption you need to be aware of:</p>
-<h3 id=symmetric-key-encryption>Symmetric Key Encryption</h3>
-<ul>
-<li><strong>Symmetric Key Encryption</strong>: Uses the same key for both encryption and decryption. It&rsquo;s fast and efficient, making it suitable for large data transfers.</li>
-</ul>
-<h3 id=asymmetric-key-encryption-pki>Asymmetric Key Encryption (PKI)</h3>
-<ul>
-<li><strong>Asymmetric Key Encryption (PKI)</strong>: Also known as Public Key Infrastructure, this method uses a pair of keys: a public key (shared with anyone) and a private key (kept secret). It&rsquo;s slower than symmetric encryption but offers enhanced security.</li>
-</ul>
-<h2 id=understanding-ssltls-and-keystores>Understanding SSL/TLS and Keystores</h2>
-<h3 id=ssltls>SSL/TLS:</h3>
-<p>SSL (Secure Sockets Layer) and TLS (Transport Layer Security) are protocols used to encrypt data transmitted between a client and a server. They provide confidentiality, integrity, and authentication.</p>
-<h3 id=keystore>Keystore:</h3>
-<p>A keystore is a file that contains a collection of keys and certificates. It includes your server&rsquo;s private key and its signed certificate, which allows the server to identify itself and establish a secure connection.</p>
-<h3 id=truststore>Truststore:</h3>
-<p>A truststore is a file that contains trusted certificates from Certificate Authorities (CAs). It allows the server to verify the authenticity of incoming certificates from clients.</p>
-<h2 id=secure-web-communication-with-https>Secure Web Communication with HTTPS</h2>
-<p>HTTPS (Hypertext Transfer Protocol Secure) is a secure version of HTTP that encrypts data transmitted between a user&rsquo;s browser and a server using SSL/TLS protocols. Here&rsquo;s how HTTPS works:</p>
+<p>Immutability, often hailed as a cornerstone of modern software development, offers a plethora of benefits ranging from enhanced predictability to streamlined memory management. In this comprehensive guide, we&rsquo;ll delve into the significance of immutability and how to harness its power effectively in both React and Java environments.</p>
+<h2 id=understanding-immutability>Understanding Immutability</h2>
+<p>At its core, immutability refers to the property of an object that prevents its state from being modified after it&rsquo;s been created. In simpler terms, once an object is instantiated, its state remains constant throughout its lifecycle. This fundamental concept has profound implications for code stability, concurrency control, and memory efficiency.</p>
+<h3 id=benefits-of-immutability>Benefits of Immutability</h3>
 <ol>
 <li>
-<p><strong>Certificate Generation</strong>:</p>
-<ul>
-<li>A web server generates a public-private key pair and creates a Certificate Signing Request (CSR).</li>
-<li>The server submits the CSR to a Certificate Authority (CA).</li>
-</ul>
+<p><strong>Predictability</strong>: Immutable objects facilitate a clearer understanding of code behavior since their state remains unchanged once initialized. This predictability simplifies debugging and enhances code maintainability.</p>
 </li>
 <li>
-<p><strong>Certificate Issuance</strong>:</p>
-<ul>
-<li>The CA verifies the CSR and issues a signed certificate. This certificate includes a hash value, a secret key, and certificate details.</li>
-</ul>
+<p><strong>Concurrency Control</strong>: In concurrent environments, immutability eliminates the need for locking mechanisms by ensuring that objects cannot be modified concurrently. This inherently prevents data races and ensures thread safety.</p>
 </li>
 <li>
-<p><strong>Browser Validation</strong>:</p>
-<ul>
-<li>When a user connects to the server, the server sends its signed certificate.</li>
-<li>The browser validates the certificate using root certificates stored in its trust store.</li>
-<li>Once validated, the browser generates a symmetric key, encrypts it with the server&rsquo;s public key, and sends it back.</li>
-</ul>
-</li>
-<li>
-<p><strong>Secure Communication</strong>:</p>
-<ul>
-<li>The server decrypts the symmetric key using its private key.</li>
-<li>This symmetric key is then used for further secure communication.</li>
-</ul>
+<p><strong>Memory Efficiency</strong>: Immutable data structures often optimize memory usage by sharing underlying data between instances. This sharing minimizes memory duplication and enhances overall memory efficiency.</p>
 </li>
 </ol>
-<h2 id=mutual-tls-mtls-enhanced-security>Mutual TLS (mTLS): Enhanced Security</h2>
-<p>Mutual TLS (mTLS) adds an extra layer of security by authenticating both the server and the client during the TLS handshake. This approach is ideal for scenarios where both parties need to verify each other&rsquo;s identity.</p>
+<h2 id=embracing-immutability-in-react>Embracing Immutability in React</h2>
+<p>React, renowned for its declarative and component-based architecture, heavily relies on immutability to drive efficient rendering and state management. By embracing immutability, React developers can unlock a myriad of performance optimizations and simplify their codebase.</p>
+<h3 id=best-practices-for-immutability-in-react>Best Practices for Immutability in React</h3>
 <ul>
 <li>
-<p><strong>Key Steps in mTLS</strong>:</p>
-<ul>
-<li>Both the client and server create CSRs and obtain certificates from a CA.</li>
-<li>During the TLS handshake, both sides validate each other&rsquo;s certificates using their respective trust stores.</li>
-<li>We call server side trustore &ldquo;keysore&rdquo;</li>
-</ul>
+<p><strong>State Management</strong>: Leverage React&rsquo;s state management mechanisms, such as the <code>useState</code> hook or state management libraries like Redux, to manage application state immutably.</p>
 </li>
 <li>
-<p><strong>Use Cases</strong>:</p>
-<ul>
-<li>mTLS is particularly useful in internal APIs, microservices architectures, and scenarios where secure communication between client and server is critical.</li>
-</ul>
-</li>
-</ul>
-<h2 id=configuring-spring-boot-for-https>Configuring Spring Boot for HTTPS</h2>
-<p>Spring Boot provides built-in support for configuring SSL/TLS. Here&rsquo;s how you can set up an HTTPS server in a Spring Boot application:</p>
-<ol>
-<li>
-<p><strong>Add Dependencies</strong>:</p>
-<ul>
-<li>Ensure your <code>pom.xml</code> file includes the <code>spring-boot-starter-web</code> and <code>spring-boot-starter-security</code> dependencies.</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#ff79c6>&lt;dependencies&gt;</span>
-    <span style=color:#ff79c6>&lt;dependency&gt;</span>
-        <span style=color:#ff79c6>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#ff79c6>&lt;/groupId&gt;</span>
-        <span style=color:#ff79c6>&lt;artifactId&gt;</span>spring-boot-starter-web<span style=color:#ff79c6>&lt;/artifactId&gt;</span>
-    <span style=color:#ff79c6>&lt;/dependency&gt;</span>
-    <span style=color:#ff79c6>&lt;dependency&gt;</span>
-        <span style=color:#ff79c6>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#ff79c6>&lt;/groupId&gt;</span>
-        <span style=color:#ff79c6>&lt;artifactId&gt;</span>spring-boot-starter-security<span style=color:#ff79c6>&lt;/artifactId&gt;</span>
-    <span style=color:#ff79c6>&lt;/dependency&gt;</span>
-<span style=color:#ff79c6>&lt;/dependencies&gt;</span>
-</code></pre></div></li>
-<li>
-<p><strong>Generate Keystore and Truststore</strong>:</p>
-<ul>
-<li>
-<p><strong>Generate Keystore</strong>: Use <code>keytool</code> to generate a private key and obtain a signed certificate from a CA, then save them in a keystore.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>keytool -genkeypair -alias myserver -keyalg RSA -keysize <span style=color:#bd93f9>2048</span> -storetype PKCS12 -keystore keystore.p12 -validity <span style=color:#bd93f9>365</span>
-</code></pre></div></li>
-<li>
-<p><strong>Generate Truststore</strong>: Optionally, create a truststore with trusted certificates from CAs.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>keytool -importcert -alias myca -keystore truststore.jks -file myca.crt
-</code></pre></div></li>
-</ul>
+<p><strong>Immutable Updates</strong>: When updating state, adhere to immutable update patterns by creating new copies of state objects rather than mutating them directly. This ensures that state changes are isolated and predictable.</p>
 </li>
 <li>
-<p><strong>Configure SSL/TLS in <code>application.properties</code></strong>:</p>
-<ul>
-<li>Configure the HTTPS settings in your Spring Boot application&rsquo;s <code>application.properties</code> file.</li>
+<p><strong>Immutable Data Structures</strong>: Consider using immutable data structure libraries like <code>Immutable.js</code> to handle complex state more efficiently. These libraries provide immutable collections that optimize memory usage and facilitate immutable updates.</p>
+</li>
 </ul>
-<pre tabindex=0><code class=language-properties data-lang=properties>server.port=443
-server.ssl.key-store=classpath:keystore.p12
-server.ssl.key-store-password=your-keystore-password
-server.ssl.key-store-type=PKCS12
-server.ssl.trust-store=classpath:truststore.jks
-server.ssl.trust-store-password=your-truststore-password
-</code></pre></li>
-</ol>
-<h2 id=summary>Summary</h2>
-<p>In summary too make your Spring Boot application accessible over the internet using HTTPS, follow these steps:</p>
-<ol>
+<h2 id=embracing-immutability-in-java>Embracing Immutability in Java</h2>
+<p>While Java may not be inherently immutable like functional programming languages, immutability can still be applied effectively to enhance code quality and performance. By adopting immutability, Java developers can mitigate concurrency issues and build more robust and maintainable applications.</p>
+<h3 id=strategies-for-immutability-in-java>Strategies for Immutability in Java</h3>
+<ul>
 <li>
-<p><strong>Obtain a Public Certificate from a Trusted CA</strong>:</p>
-<ul>
-<li>Obtain a public SSL/TLS certificate from a trusted CA (e.g., Let&rsquo;s Encrypt, DigiCert).</li>
-<li>Import the certificate into your keystore.</li>
-</ul>
+<p><strong>Immutable Objects</strong>: Design classes to be immutable by making fields <code>private</code> and <code>final</code> and providing no setter methods. This ensures that objects cannot be modified after instantiation, leading to enhanced code stability and thread safety.</p>
 </li>
 <li>
-<p><strong>Configure Network and Firewall Settings</strong>:</p>
-<ul>
-<li>Open port 443 for HTTPS traffic in your server&rsquo;s firewall settings.</li>
-<li>Ensure your server has a public IP address or use a domain name service (DNS) to point your domain to the server&rsquo;s IP address.</li>
-</ul>
+<p><strong>Defensive Copying</strong>: When returning mutable objects from methods, use defensive copying to ensure that the original objects remain unmodifiable. This prevents unintended modifications and maintains the integrity of the original objects.</p>
 </li>
 <li>
-<p><strong>Configure DNS Records</strong>:</p>
-<ul>
-<li>Add an &ldquo;A&rdquo; record in your domain&rsquo;s DNS settings to map your domain name to your server&rsquo;s public IP address.</li>
-</ul>
+<p><strong>Immutable Collections</strong>: Utilize immutable collection classes provided by Java&rsquo;s standard library or third-party libraries to manage collections immutably. These collections offer efficient memory usage and simplify code by eliminating the need for defensive copying.</p>
 </li>
-<li>
-<p><strong>Run your Spring Boot Application</strong>:</p>
-<ul>
-<li>Start your Spring Boot application. It should now be running on port 443 and accessible over the internet using HTTPS.</li>
-<li>Make sure adding the necessary configs to applications</li>
 </ul>
-</li>
-<li>
-<p><strong>Maintain Security and Certificates</strong>:</p>
-<ul>
-<li>Keep your SSL/TLS certificates updated and renewed before they expire.</li>
-<li>Follow best practices for key management and security settings.</li>
-</ul>
-</li>
-</ol>
+<h2 id=striking-a-balance>Striking a Balance</h2>
+<p>While immutability offers numerous benefits, it&rsquo;s essential to strike a balance between immutability and mutability based on the specific requirements of your application. In some cases, mutability may be necessary for performance optimizations or in-place modifications. By carefully evaluating the trade-offs, you can design a codebase that maximizes the advantages of immutability while addressing the needs of your application effectively.</p>
 <h2 id=conclusion>Conclusion</h2>
-<p>By understanding and implementing encryption, HTTPS, mTLS, and secure configurations in your Spring Boot application, you can build web applications that maintain high standards of data privacy and security. Always follow security best practices and monitor your server&rsquo;s settings to ensure safe and reliable communication over the internet.</p>
+<p>Immutability stands as a powerful tool in the arsenal of software developers, offering a myriad of benefits across a wide range of domains. By embracing immutability in both React and Java development, you can build robust, scalable, and maintainable applications that deliver exceptional user experiences while minimizing the risk of bugs and concurrency issues. Embrace immutability, and unlock the full potential of your codebase.</p>
 <hr>
+<p>Feel free to expand upon or customize this guide to suit your audience and objectives!</p>
 <div class=zs-modal-bg></div>
 <div class=zs-modal-box>
 <div class=zs-modal-head>
@@ -272,8 +167,12 @@ server.ssl.trust-store-password=your-truststore-password
 <hr>
 <ul class=pager>
 <li class=previous>
-<a href=/post/psyco-3-evalu/ data-toggle=tooltip data-placement=top title="Evolution and developing stages in field of psychology">&larr;
+<a href=/post/dev-java-lambda-1/ data-toggle=tooltip data-placement=top title="Java Lambda: All you need to know to code">&larr;
 Previous Post</a>
+</li>
+<li class=next>
+<a href=/post/dev-java-spring-beans/ data-toggle=tooltip data-placement=top title="Spring Beans: A Beginner's Guide">Next
+Post &rarr;</a>
 </li>
 </ul>
 </div>
@@ -347,14 +246,44 @@ sidebar-container">
 <hr class="hidden-sm hidden-xs">
 <h5><a href=/tags/>FEATURED TOPIC</a></h5>
 <div class=tags>
+<a href=/%20/tags/design-principles title=design-principles>
+design-principles
+</a>
+<a href=/%20/tags/development title=development>
+development
+</a>
 <a href=/%20/tags/developments title=developments>
 developments
+</a>
+<a href=/%20/tags/front-end-developemnt title=front-end-developemnt>
+front-end-developemnt
+</a>
+<a href=/%20/tags/functional-interfaces title=functional-interfaces>
+functional-interfaces
+</a>
+<a href=/%20/tags/immutability title=immutability>
+immutability
 </a>
 <a href=/%20/tags/java title=java>
 java
 </a>
+<a href=/%20/tags/java-lambda title=java-lambda>
+java-lambda
+</a>
 <a href=/%20/tags/psychology title=psychology>
 psychology
+</a>
+<a href=/%20/tags/react title=react>
+react
+</a>
+<a href=/%20/tags/redux title=redux>
+redux
+</a>
+<a href=/%20/tags/security title=security>
+security
+</a>
+<a href=/%20/tags/solid title=solid>
+solid
 </a>
 </div>
 </section>

@@ -1,0 +1,596 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:2000/1*bg7G80YGJ1LUY9H4tgqt6A.png">
+<meta property="twitter:image" content="https://miro.medium.com/v2/resize:fit:2000/1*bg7G80YGJ1LUY9H4tgqt6A.png">
+<meta name=title content="Understanding Redux with React">
+<meta property="og:title" content="Understanding Redux with React">
+<meta property="twitter:title" content="Understanding Redux with React">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="In the front-end development, managing state effectively is paramount to building robust and scalable applications. As your React application grows in complexity, you might encounter challenges in managing state across various components, passing props down multiple levels, and handling state changes efficiently. This is where Redux comes into play. ">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>Understanding Redux with React | BawaDev</title>
+<link rel=canonical href=/post/dev-redux/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/gallery//>Gallery</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://miro.medium.com/v2/resize:fit:2000/1*bg7G80YGJ1LUY9H4tgqt6A.png)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+<a class=tag href=/%20/tags/react title=React>
+React
+</a>
+<a class=tag href=/%20/tags/redux title=Redux>
+Redux
+</a>
+<a class=tag href=/%20/tags/front-end-developemnt title="Front end developemnt">
+Front end developemnt
+</a>
+</div>
+<h1>Understanding Redux with React</h1>
+<h2 class=subheading>A Comprehensive Guide for Beginners about Redux</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<h2 id=introduction>Introduction</h2>
+<p>In the front-end development, managing state effectively is paramount to building robust and scalable applications. As your React application grows in complexity, you might encounter challenges in managing state across various components, passing props down multiple levels, and handling state changes efficiently. This is where Redux comes into play.</p>
+<p>Redux is a predictable state container for JavaScript applications, primarily used with libraries like React or Angular for managing application state in a more organized and scalable manner. In this guide, we&rsquo;ll delve into the fundamentals of Redux and how it integrates seamlessly with React to address common state management issues.</p>
+<link rel=stylesheet href=/css/hugo-easy-gallery.css>
+<div class=box>
+<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+<div class=img>
+<img itemprop=thumbnail src="https://media.licdn.com/dms/image/C5612AQGty-VERAtAXw/article-cover_image-shrink_720_1280/0/1652092655918?e=2147483647&v=beta&t=p-BNRoJPsi7kepF734mc2f5fzNZ5kFk4KpLwk8EIndw" alt="difference between react and redux">
+</div>
+<a href="https://media.licdn.com/dms/image/C5612AQGty-VERAtAXw/article-cover_image-shrink_720_1280/0/1652092655918?e=2147483647&v=beta&t=p-BNRoJPsi7kepF734mc2f5fzNZ5kFk4KpLwk8EIndw" itemprop=contentUrl></a>
+<figcaption align=center>
+<p>How Redux differs from React updating the DoM</p>
+</figcaption>
+</figure>
+</div>
+<h2 id=why-redux>Why Redux?</h2>
+<p>Before diving into Redux, let&rsquo;s understand why we need it in the first place. In React, state management primarily revolves around component state and props. While this works well for small to medium-sized applications, it becomes challenging to manage state in larger applications with deeply nested components and complex data flows.</p>
+<h3 id=issues-with-managing-state-via-props>Issues with Managing State via Props</h3>
+<p>Consider a scenario where you have a parent component that needs to pass data to its deeply nested child components. You end up passing props through several intermediate components, leading to what&rsquo;s commonly known as &ldquo;prop drilling.&rdquo; This not only clutters your code but also makes it harder to maintain and debug.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#6272a4>// ParentComponent.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> React from <span style=color:#f1fa8c>&#39;react&#39;</span>;
+<span style=color:#ff79c6>import</span> ChildComponent from <span style=color:#f1fa8c>&#39;./ChildComponent&#39;</span>;
+
+<span style=color:#ff79c6>const</span> ParentComponent <span style=color:#ff79c6>=</span> () =&gt; {
+  <span style=color:#ff79c6>const</span> data <span style=color:#ff79c6>=</span> fetchData(); <span style=color:#6272a4>// Some function to fetch data
+</span><span style=color:#6272a4></span>
+  <span style=color:#ff79c6>return</span> &lt;<span style=color:#ff79c6>ChildComponent</span> <span style=color:#50fa7b>data</span><span style=color:#ff79c6>=</span>{data} /&gt;;
+};
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> ParentComponent;
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#6272a4>// ChildComponent.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> React from <span style=color:#f1fa8c>&#39;react&#39;</span>;
+<span style=color:#ff79c6>import</span> GrandChildComponent from <span style=color:#f1fa8c>&#39;./GrandChildComponent&#39;</span>;
+
+<span style=color:#ff79c6>const</span> ChildComponent <span style=color:#ff79c6>=</span> ({ data }) =&gt; {
+  <span style=color:#ff79c6>return</span> &lt;<span style=color:#ff79c6>GrandChildComponent</span> <span style=color:#50fa7b>data</span><span style=color:#ff79c6>=</span>{data} /&gt;;
+};
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> ChildComponent;
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#6272a4>// GrandChildComponent.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> React from <span style=color:#f1fa8c>&#39;react&#39;</span>;
+
+<span style=color:#ff79c6>const</span> GrandChildComponent <span style=color:#ff79c6>=</span> ({ data }) =&gt; {
+  <span style=color:#6272a4>// Do something with data
+</span><span style=color:#6272a4></span>  <span style=color:#ff79c6>return</span> &lt;<span style=color:#ff79c6>div</span>&gt;{data}&lt;/<span style=color:#ff79c6>div</span>&gt;;
+};
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> GrandChildComponent;
+</code></pre></div><p>In this example, <code>data</code> is passed from <code>ParentComponent</code> to <code>ChildComponent</code> and then to <code>GrandChildComponent</code>. While this approach works, it becomes cumbersome as the application scales, especially if <code>data</code> needs to be accessed by multiple components at different levels of the component tree.</p>
+<h3 id=introduction-to-context-api>Introduction to Context API</h3>
+<p>React provides the Context API as a solution to prop drilling. Context allows you to pass data through the component tree without having to pass props down manually at every level. While Context can alleviate some of the issues associated with prop drilling, it has its limitations, particularly in terms of performance and complexity.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#6272a4>// DataContext.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> React, { createContext, useState } from <span style=color:#f1fa8c>&#39;react&#39;</span>;
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> DataContext <span style=color:#ff79c6>=</span> createContext();
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> DataProvider <span style=color:#ff79c6>=</span> ({ children }) =&gt; {
+  <span style=color:#ff79c6>const</span> [data, setData] <span style=color:#ff79c6>=</span> useState(<span style=color:#ff79c6>null</span>);
+
+  <span style=color:#6272a4>// Fetch data and update state
+</span><span style=color:#6272a4></span>
+  <span style=color:#ff79c6>return</span> (
+    &lt;<span style=color:#ff79c6>DataContext.Provider</span> <span style=color:#50fa7b>value</span><span style=color:#ff79c6>=</span>{{ data, setData }}&gt;
+      {children}
+    &lt;/<span style=color:#ff79c6>DataContext.Provider</span>&gt;
+  );
+};
+</code></pre></div><p>With the Context API, you can wrap your component tree with a <code>DataProvider</code>, providing access to <code>data</code> throughout your application without the need for prop drilling. While this simplifies state management, it can lead to performance issues, especially in applications with deeply nested components or frequent updates to the context.</p>
+<h2 id=understanding-redux>Understanding Redux</h2>
+<p>Redux offers a more structured approach to state management by centralizing application state in a single store. It follows the principles of a unidirectional data flow, making it easier to understand and debug your application&rsquo;s state changes.</p>
+<h3 id=redux-core-concepts>Redux Core Concepts</h3>
+<p>Before we delve into how Redux integrates with React, let&rsquo;s explore its core concepts:</p>
+<ol>
+<li><strong>Store</strong>: The single source of truth that holds the application state.</li>
+<li><strong>Actions</strong>: Plain JavaScript objects that represent changes to the state.</li>
+<li><strong>Reducers</strong>: Pure functions responsible for handling state transitions based on actions.</li>
+<li><strong>Dispatch</strong>: The mechanism for triggering actions to update the state.</li>
+<li><strong>Selectors</strong>: Functions used to extract specific pieces of data from the store.</li>
+</ol>
+<div class=box>
+<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+<div class=img>
+<img itemprop=thumbnail src=https://codeit.mk/magnoliaPublic/dam/jcr:2200ee35-a3b1-43c0-9589-e036ae9ea5d8/redux.1.2023-10-27-14-30-12.png alt="Redux components">
+</div>
+<a href=https://codeit.mk/magnoliaPublic/dam/jcr:2200ee35-a3b1-43c0-9589-e036ae9ea5d8/redux.1.2023-10-27-14-30-12.png itemprop=contentUrl></a>
+<figcaption align=center>
+<p>Redux components</p>
+</figcaption>
+</figure>
+</div>
+<h3 id=setting-up-redux-in-a-react-application>Setting Up Redux in a React Application</h3>
+<p>To use Redux with React, you need to install the necessary packages:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install redux react-redux
+</code></pre></div><h3 id=creating-a-redux-store>Creating a Redux Store</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// store.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> { createStore } from <span style=color:#f1fa8c>&#39;redux&#39;</span>;
+<span style=color:#ff79c6>import</span> rootReducer from <span style=color:#f1fa8c>&#39;./reducers&#39;</span>;
+
+<span style=color:#ff79c6>const</span> store <span style=color:#ff79c6>=</span> createStore(rootReducer);
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> store;
+</code></pre></div><p>In Redux, the store is a single JavaScript object that holds the entire state of your application. It serves as the &ldquo;single source of truth&rdquo; and allows you to access and update the state in a predictable manner.</p>
+<ol>
+<li>
+<p><strong>Importing <code>createStore</code></strong>: Redux provides a <code>createStore</code> function, which is used to create a Redux store. This function needs to be imported from the <code>redux</code> package.</p>
+</li>
+<li>
+<p><strong>Importing Root Reducer</strong>: The store is initialized with a root reducer, which is a function that specifies how the application&rsquo;s state should change in response to actions. The root reducer combines multiple reducers into a single reducer function using <code>combineReducers</code> (not shown in the provided code snippet).</p>
+</li>
+<li>
+<p><strong>Creating the Store</strong>: Once you&rsquo;ve imported <code>createStore</code> and the root reducer, you can create the Redux store by calling <code>createStore</code> and passing in the root reducer as an argument.</p>
+</li>
+<li>
+<p><strong>Exporting the Store</strong>: Finally, you export the created store so that it can be imported and used throughout your application.</p>
+</li>
+</ol>
+<h3 id=defining-reducers>Defining Reducers</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// reducers.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>const</span> initialState <span style=color:#ff79c6>=</span> {
+  <span style=color:#6272a4>// Define initial state properties
+</span><span style=color:#6272a4></span>};
+
+<span style=color:#ff79c6>const</span> rootReducer <span style=color:#ff79c6>=</span> (state <span style=color:#ff79c6>=</span> initialState, action) =&gt; {
+  <span style=color:#ff79c6>switch</span> (action.type) {
+    <span style=color:#6272a4>// Define how state changes based on actions
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>default</span><span style=color:#ff79c6>:</span>
+      <span style=color:#ff79c6>return</span> state;
+  }
+};
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> rootReducer;
+</code></pre></div><p>Reducers are pure functions in Redux responsible for handling state transitions based on dispatched actions.</p>
+<ol>
+<li>
+<p><strong>Initial State</strong>: You start by defining an initial state object, which represents the initial state of your application. This object typically contains various properties representing different parts of your application&rsquo;s state.</p>
+</li>
+<li>
+<p><strong>Root Reducer Function</strong>: Next, you define a root reducer function using the ES6 arrow function syntax. This function takes two parameters: <code>state</code> (representing the current state of the application) and <code>action</code> (representing the action that was dispatched).</p>
+</li>
+<li>
+<p><strong>Switch Statement</strong>: Within the root reducer function, you typically use a <code>switch</code> statement to handle different action types. Each <code>case</code> in the <code>switch</code> statement corresponds to a specific action type, and you define how the state should change in response to each action.</p>
+</li>
+<li>
+<p><strong>Default Case</strong>: The <code>default</code> case in the <code>switch</code> statement returns the current state unchanged if the action type doesn&rsquo;t match any of the defined cases. This ensures that your reducer always returns a valid state, even if no action type matches.</p>
+</li>
+<li>
+<p><strong>Returning New State</strong>: Inside each <code>case</code>, you return a new state object that reflects the updated state of your application based on the action dispatched.</p>
+</li>
+<li>
+<p><strong>Exporting the Root Reducer</strong>: Finally, you export the root reducer function so that it can be combined with other reducers if needed and used to create the Redux store.</p>
+</li>
+</ol>
+<h3 id=providing-redux-store-to-the-react-app>Providing Redux Store to the React App</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// index.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> React from <span style=color:#f1fa8c>&#39;react&#39;</span>;
+<span style=color:#ff79c6>import</span> ReactDOM from <span style=color:#f1fa8c>&#39;react-dom&#39;</span>;
+<span style=color:#ff79c6>import</span> { Provider } from <span style=color:#f1fa8c>&#39;react-redux&#39;</span>;
+<span style=color:#ff79c6>import</span> store from <span style=color:#f1fa8c>&#39;./store&#39;</span>;
+<span style=color:#ff79c6>import</span> App from <span style=color:#f1fa8c>&#39;./App&#39;</span>;
+
+ReactDOM.render(
+  <span style=color:#ff79c6>&lt;</span>Provider store<span style=color:#ff79c6>=</span>{store}<span style=color:#ff79c6>&gt;</span>
+    <span style=color:#ff79c6>&lt;</span>App <span style=color:#ff79c6>/&gt;</span>
+  <span style=color:#ff79c6>&lt;</span>/Provider&gt;,
+  <span style=color:#8be9fd;font-style:italic>document</span>.getElementById(<span style=color:#f1fa8c>&#39;root&#39;</span>)
+);
+</code></pre></div><p>In a React application, you need to provide the Redux store to your components so that they can access the application state and dispatch actions.</p>
+<ol>
+<li>
+<p><strong>Importing Dependencies</strong>: You start by importing necessary dependencies from the <code>react</code> and <code>react-dom</code> packages, including <code>Provider</code> from <code>react-redux</code> and the Redux store.</p>
+</li>
+<li>
+<p><strong>Rendering the App</strong>: Inside your <code>ReactDOM.render()</code> function, you wrap your root component (usually <code>App</code>) with the <code>Provider</code> component imported from <code>react-redux</code>. This <code>Provider</code> component accepts a <code>store</code> prop, to which you pass your Redux store.</p>
+</li>
+<li>
+<p><strong>Injecting the Store</strong>: By wrapping your root component with the <code>Provider</code> component and passing the Redux store as a prop, you make the Redux store available to all components in your React application via React&rsquo;s context API.</p>
+</li>
+<li>
+<p><strong>Mounting the App</strong>: Finally, you specify the DOM element where your React application should be rendered (e.g., <code>document.getElementById('root')</code>).</p>
+</li>
+</ol>
+<p>By following these steps, you ensure that your Redux store is properly integrated with your React application, enabling seamless state management and interaction between React components and the Redux store.</p>
+<h3 id=working-with-redux-in-react-components>Working with Redux in React Components</h3>
+<p>Now that we have set up Redux in our React application, let&rsquo;s see how we can use it in our components.</p>
+<h4 id=connecting-components-to-redux-store>Connecting Components to Redux Store</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// MyComponent.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> React from <span style=color:#f1fa8c>&#39;react&#39;</span>;
+<span style=color:#ff79c6>import</span> { connect } from <span style=color:#f1fa8c>&#39;react-redux&#39;</span>;
+
+<span style=color:#ff79c6>const</span> MyComponent <span style=color:#ff79c6>=</span> ({ data }) =&gt; {
+  <span style=color:#ff79c6>return</span> <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span>{data}<span style=color:#ff79c6>&lt;</span>/div&gt;;
+};
+
+<span style=color:#ff79c6>const</span> mapStateToProps <span style=color:#ff79c6>=</span> (state) =&gt; ({
+  data<span style=color:#ff79c6>:</span> state.data,
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> connect(mapStateToProps)(MyComponent);
+</code></pre></div><p>In this example, <code>MyComponent</code> is connected to the Redux store using the <code>connect</code> function provided by <code>react-redux</code>. It receives <code>data</code> from the Redux store as a prop.</p>
+<h4 id=dispatching-actions>Dispatching Actions</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// MyComponent.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> React from <span style=color:#f1fa8c>&#39;react&#39;</span>;
+<span style=color:#ff79c6>import</span> { connect } from <span style=color:#f1fa8c>&#39;react-redux&#39;</span>;
+<span style=color:#ff79c6>import</span> { fetchData } from <span style=color:#f1fa8c>&#39;./actions&#39;</span>;
+
+<span style=color:#ff79c6>const</span> MyComponent <span style=color:#ff79c6>=</span> ({ data, fetch }) =&gt; {
+  <span style=color:#ff79c6>const</span> handleClick <span style=color:#ff79c6>=</span> () =&gt; {
+    fetch(); <span style=color:#6272a4>// Dispatches fetchData action
+</span><span style=color:#6272a4></span>  };
+
+  <span style=color:#ff79c6>return</span> (
+    <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span>
+      <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span>{data}<span style=color:#ff79c6>&lt;</span>/div&gt;
+      <span style=color:#ff79c6>&lt;</span>button onClick<span style=color:#ff79c6>=</span>{handleClick}<span style=color:#ff79c6>&gt;</span>Fetch Data<span style=color:#ff79c6>&lt;</span>/button&gt;
+    <span style=color:#ff79c6>&lt;</span>/div&gt;
+  );
+};
+
+<span style=color:#ff79c6>const</span> mapStateToProps <span style=color:#ff79c6>=</span> (state) =&gt; ({
+  data<span style=color:#ff79c6>:</span> state.data,
+});
+
+<span style=color:#ff79c6>const</span> mapDispatchToProps <span style=color:#ff79c6>=</span> (dispatch) =&gt; ({
+  fetch<span style=color:#ff79c6>:</span> () =&gt; dispatch(fetchData()),
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> connect(mapStateToProps, mapDispatchToProps)(MyComponent);
+</code></pre></div><p>In this example, <code>MyComponent</code> dispatches the <code>fetchData</code> action when a button is clicked. The action is dispatched through the <code>fetch</code> prop, which is mapped to the <code>fetchData</code> action creator using <code>mapDispatchToProps</code>.</p>
+<h3 id=immutability-in-redux>Immutability in Redux</h3>
+<p>One of the key principles of Redux is immutability, which means that state should not be mutated directly. Instead, state transitions are handled by creating a new state object based on the previous state and the action dispatched.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// reducers.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>const</span> initialState <span style=color:#ff79c6>=</span> {
+  counter<span style=color:#ff79c6>:</span> <span style=color:#bd93f9>0</span>,
+};
+
+<span style=color:#ff79c6>const</span> rootReducer <span style=color:#ff79c6>=</span> (state <span style=color:#ff79c6>=</span> initialState, action) =&gt; {
+  <span style=color:#ff79c6>switch</span> (action.type) {
+    <span style=color:#ff79c6>case</span> <span style=color:#f1fa8c>&#39;INCREMENT&#39;</span><span style=color:#ff79c6>:</span>
+      <span style=color:#ff79c6>return</span> {
+        ...state,
+        counter<span style=color:#ff79c6>:</span> state.counter <span style=color:#ff79c6>+</span> <span style=color:#bd93f9>1</span>,
+      };
+    <span style=color:#ff79c6>case</span> <span style=color:#f1fa8c>&#39;DECREMENT&#39;</span><span style=color:#ff79c6>:</span>
+      <span style=color:#ff79c6>return</span> {
+        ...state,
+        counter<span style=color:#ff79c6>:</span> state.counter <span style=color:#ff79c6>-</span> <span style=color:#bd93f9>1</span>,
+      };
+    <span style=color:#ff79c6>default</span>
+
+<span style=color:#ff79c6>:</span>
+      <span style=color:#ff79c6>return</span> state;
+  }
+};
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> rootReducer;
+</code></pre></div><p>In this example, when the <code>INCREMENT</code> action is dispatched, a new state object is returned with the <code>counter</code> incremented by 1. Similarly, when the <code>DECREMENT</code> action is dispatched, a new state object is returned with the <code>counter</code> decremented by 1.</p>
+<h2 id=conclusion>Conclusion</h2>
+<p>In this guide, we&rsquo;ve covered the basics of Redux and how it integrates with React for effective state management. By centralizing application state and following the principles of a unidirectional data flow, Redux provides a scalable solution to managing state in React applications. While Redux introduces additional complexity compared to using React&rsquo;s built-in state management capabilities, its benefits become apparent as your application grows in size and complexity.</p>
+<p>Whether you&rsquo;re building a small application or a large-scale enterprise application, understanding Redux and its integration with React will empower you to build more maintainable and scalable front-end applications. Experiment with the examples provided in this guide and explore further to deepen your understanding of Redux and its application in real-world projects. In next article we will look at an easy way of using redux. Untill then ..Happy coding!</p>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/dev-java-spring-ioc/ data-toggle=tooltip data-placement=top title="Demystifying IOC Containers: A Beginner's Guide">&larr;
+Previous Post</a>
+</li>
+<li class=next>
+<a href=/post/psyco-2-motiv/ data-toggle=tooltip data-placement=top title="Understanding Motivation">Next
+Post &rarr;</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<section class="visible-md visible-lg">
+<hr><h5><a href=/about>ABOUT AUTHOR</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=cursor:pointer>
+</a>
+<p>Pasindu Bawantha,Software Engineer, Tech Writer and Life Adventurer</p>
+<ul class=list-inline>
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<div class=side-catalog>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TOPIC</a></h5>
+<div class=tags>
+<a href=/%20/tags/design-principles title=design-principles>
+design-principles
+</a>
+<a href=/%20/tags/development title=development>
+development
+</a>
+<a href=/%20/tags/developments title=developments>
+developments
+</a>
+<a href=/%20/tags/front-end-developemnt title=front-end-developemnt>
+front-end-developemnt
+</a>
+<a href=/%20/tags/functional-interfaces title=functional-interfaces>
+functional-interfaces
+</a>
+<a href=/%20/tags/immutability title=immutability>
+immutability
+</a>
+<a href=/%20/tags/java title=java>
+java
+</a>
+<a href=/%20/tags/java-lambda title=java-lambda>
+java-lambda
+</a>
+<a href=/%20/tags/psychology title=psychology>
+psychology
+</a>
+<a href=/%20/tags/react title=react>
+react
+</a>
+<a href=/%20/tags/redux title=redux>
+redux
+</a>
+<a href=/%20/tags/security title=security>
+security
+</a>
+<a href=/%20/tags/solid title=solid>
+solid
+</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div class="visible-xs-block hidden-sm hidden-md hidden-lg">
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<section class="visible-md visible-lg visible-sm visible-xs-block">
+<hr><h5><a href=/about>ABOUT</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=max-width:200px;height:auto;cursor:pointer>
+</a>
+<p>Pasindu Bawantha,Software Engineer, Tech Writer and Life Adventurer</p>
+</div>
+</section>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</div>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>
