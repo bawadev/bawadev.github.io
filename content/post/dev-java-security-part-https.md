@@ -9,7 +9,7 @@ summary: "In today's digital landscape, secure communication is essential for bu
 tags:
     - JAVA
     - DEVELOPMENTS
-    - security
+    - SECURITY
 
 ---
 

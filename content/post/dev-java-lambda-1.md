@@ -7,10 +7,10 @@ author:     "Pasindu"
 image:      "https://www.educative.io/v2api/editorpage/5947956966981632/image/5758486424584192"
 summary: "Java lambdas provide a concise way to express instances of single-method interfaces (functional interfaces). They enhance code readability and maintainability by allowing you to write more compact and expressive code for functional programming constructs. Lambdas also facilitate the use of functional interfaces in the Java API, making it easier to work with collections and streams. Overall, they contribute to more efficient and modern Java programming practices."
 tags:
-    - JAVA
-    - JAVA LAMBDA
-    - DEVELOPMENTS
-    - functional interfaces
+    - Java
+    - Java lambda
+    - Development
+    - Functional interfaces
     
 ---
 
