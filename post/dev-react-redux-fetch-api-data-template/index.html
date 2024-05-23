@@ -213,10 +213,10 @@ REACT_APP_BANNER_URI=http://localhost:8080/banner
 
 <span style=color:#ff79c6>const</span> Banner <span style=color:#ff79c6>=</span> () =&gt; {
   <span style=color:#ff79c6>const</span> [dotActive, setDocActive] <span style=color:#ff79c6>=</span> useState(<span style=color:#bd93f9>0</span>);
-  <span style=color:#ff79c6>const</span> { bannerData, status, error } <span style=color:#ff79c6>=</span> useTopBannerFetch();
+  <span style=color:#ff79c6>const</span> { bannerData, status, errorData } <span style=color:#ff79c6>=</span> useTopBannerFetch();
 
   <span style=color:#ff79c6>if</span> (status <span style=color:#ff79c6>===</span> <span style=color:#f1fa8c>&#39;pending&#39;</span>) <span style=color:#ff79c6>return</span> <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span>Loading...<span style=color:#ff79c6>&lt;</span>/div&gt;;
-  <span style=color:#ff79c6>if</span> (status <span style=color:#ff79c6>===</span> <span style=color:#f1fa8c>&#39;error&#39;</span>) <span style=color:#ff79c6>return</span> <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span><span style=color:#8be9fd;font-style:italic>Error</span><span style=color:#ff79c6>:</span> {error}<span style=color:#ff79c6>&lt;</span>/div&gt;;
+  <span style=color:#ff79c6>if</span> (status <span style=color:#ff79c6>===</span> <span style=color:#f1fa8c>&#39;error&#39;</span>) <span style=color:#ff79c6>return</span> <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span><span style=color:#8be9fd;font-style:italic>Error</span><span style=color:#ff79c6>:</span> {errorData}<span style=color:#ff79c6>&lt;</span>/div&gt;;
   <span style=color:#6272a4>// other codes 
 </span><span style=color:#6272a4></span>  <span style=color:#ff79c6>return</span> (
     <span style=color:#ff79c6>&lt;</span>Slider {...settings}<span style=color:#ff79c6>&gt;</span>
