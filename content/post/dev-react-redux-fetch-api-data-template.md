@@ -172,10 +172,10 @@ import useTopBannerFetch from "../../hooks/useTopBannerFetch";
 
 const Banner = () => {
   const [dotActive, setDocActive] = useState(0);
-  const { bannerData, status, error } = useTopBannerFetch();
+  const { bannerData, status, errorData } = useTopBannerFetch();
 
   if (status === 'pending') return <div>Loading...</div>;
-  if (status === 'error') return <div>Error: {error}</div>;
+  if (status === 'error') return <div>Error: {errorData}</div>;
   // other codes 
   return (
     <Slider {...settings}>
