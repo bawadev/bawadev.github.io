@@ -7,7 +7,7 @@ multilingual: false
 ## About Author
 
 
-**_Pasindu Munasinghe_** is a highly skilled software engineer and a consultant with expertise in multiple areas of software development. Holding a Bachelor of Science in Information Technology with honors from University of Moratuwa and currently he is reading for a Higher Diploma in psychology and counseling in IMBS campus,Sri Lanka. Pasindu has cultivated his skills in backend development, database management, and frontend development. His enthusiasm for technology propels him to continually learn and tackle new challenges. With the new emerge of Generative AI, he is utilizing his humongous amount of knowledge on Artificial Intelligence and Machine Learning for putting his clients ahade of their competitors.
+**_Pasindu Bawantha_** is a highly skilled software engineer and a consultant with expertise in multiple areas of software development. Holding a Bachelor of Science in Information Technology with honors from University of Moratuwa and currently he is reading for a Higher Diploma in psychology and counseling in IMBS campus,Sri Lanka. Pasindu has cultivated his skills in backend development, database management, and frontend development. His enthusiasm for technology propels him to continually learn and tackle new challenges. With the new emerge of Generative AI, he is utilizing his humongous amount of knowledge on Artificial Intelligence and Machine Learning for putting his clients ahade of their competitors.
 {{< figure src="/img/client-banner.png" alt="" caption="" >}}
 
 ## Technical Expertise

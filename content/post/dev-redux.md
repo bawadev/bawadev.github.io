@@ -121,28 +121,6 @@ To use Redux with React, you need to install the necessary packages:
 npm install redux react-redux
 ```
 
-### Creating a Redux Store
-
-```javascript
-// store.js
-import { createStore } from 'redux';
-import rootReducer from './reducers';
-
-const store = createStore(rootReducer);
-
-export default store;
-```
-
-In Redux, the store is a single JavaScript object that holds the entire state of your application. It serves as the "single source of truth" and allows you to access and update the state in a predictable manner.
-
-1. **Importing `createStore`**: Redux provides a `createStore` function, which is used to create a Redux store. This function needs to be imported from the `redux` package.
-
-2. **Importing Root Reducer**: The store is initialized with a root reducer, which is a function that specifies how the application's state should change in response to actions. The root reducer combines multiple reducers into a single reducer function using `combineReducers` (not shown in the provided code snippet).
-
-3. **Creating the Store**: Once you've imported `createStore` and the root reducer, you can create the Redux store by calling `createStore` and passing in the root reducer as an argument.
-
-4. **Exporting the Store**: Finally, you export the created store so that it can be imported and used throughout your application.
-
 ### Defining Reducers
 
 ```javascript
@@ -175,6 +153,29 @@ Reducers are pure functions in Redux responsible for handling state transitions 
 5. **Returning New State**: Inside each `case`, you return a new state object that reflects the updated state of your application based on the action dispatched.
 
 6. **Exporting the Root Reducer**: Finally, you export the root reducer function so that it can be combined with other reducers if needed and used to create the Redux store.
+
+
+### Creating a Redux Store
+
+```javascript
+// store.js
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer);
+
+export default store;
+```
+
+In Redux, the store is a single JavaScript object that holds the entire state of your application. It serves as the "single source of truth" and allows you to access and update the state in a predictable manner.
+
+1. **Importing `createStore`**: Redux provides a `createStore` function, which is used to create a Redux store. This function needs to be imported from the `redux` package.
+
+2. **Importing Root Reducer**: The store is initialized with a root reducer, which is a function that specifies how the application's state should change in response to actions. The root reducer combines multiple reducers into a single reducer function using `combineReducers` (not shown in the provided code snippet).
+
+3. **Creating the Store**: Once you've imported `createStore` and the root reducer, you can create the Redux store by calling `createStore` and passing in the root reducer as an argument.
+
+4. **Exporting the Store**: Finally, you export the created store so that it can be imported and used throughout your application.
 
 ### Providing Redux Store to the React App
 
