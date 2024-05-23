@@ -1,0 +1,480 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/60794dbc8615125d3ad57026/93c6179d-9540-41c4-aae8-a2ae83f5e850/Frame-37-1.png">
+<meta property="twitter:image" content="https://images.squarespace-cdn.com/content/v1/60794dbc8615125d3ad57026/93c6179d-9540-41c4-aae8-a2ae83f5e850/Frame-37-1.png">
+<meta name=title content="Integrating a React Application with a Backend API Using Redux Toolkit">
+<meta property="og:title" content="Integrating a React Application with a Backend API Using Redux Toolkit">
+<meta property="twitter:title" content="Integrating a React Application with a Backend API Using Redux Toolkit">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="This is a detailed article on integrating a React application with a backend API using Redux Toolkit and custom hooks. In this article we will give you a easy to follow template to integrate your react front end with a REST backend. This step-by-step guide will help developers set up their applications to fetch data from a backend server and manage it efficiently using Redux Toolkit.">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>Integrating a React Application with a Backend API Using Redux Toolkit | BawaDev</title>
+<link rel=canonical href=/post/dev-react-redux-fetch-api-data-template/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/gallery//>Gallery</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://images.squarespace-cdn.com/content/v1/60794dbc8615125d3ad57026/93c6179d-9540-41c4-aae8-a2ae83f5e850/Frame-37-1.png)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+<a class=tag href=/%20/tags/react title=React>
+React
+</a>
+<a class=tag href=/%20/tags/middleware title=Middleware>
+Middleware
+</a>
+<a class=tag href=/%20/tags/redux title=Redux>
+Redux
+</a>
+</div>
+<h1>Integrating a React Application with a Backend API Using Redux Toolkit</h1>
+<h2 class=subheading>A easy to folow template for integration</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<p>Integrating a React application with a backend API is a common requirement in web development. In this guide, we will walk through the process of setting up such an integration using Redux Toolkit and custom hooks in a React application. By the end, you&rsquo;ll have a template you can follow to easily fetch and manage data from your backend server.</p>
+<h3 id=setting-up-your-project><strong>Setting Up Your Project</strong></h3>
+<ul>
+<li>
+<p><strong>Create a React App</strong>: Use Create React App to set up your project.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npx create-react-app my-app
+<span style=color:#8be9fd;font-style:italic>cd</span> my-app
+</code></pre></div></li>
+<li>
+<p><strong>Install Redux Toolkit and React-Redux</strong>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install @reduxjs/toolkit react-redux
+</code></pre></div></li>
+</ul>
+<h3 id=project-structure><strong>Project Structure</strong></h3>
+<p>Organize your project for scalability. A typical structure might look like this:</p>
+<pre tabindex=0><code>src/
+|-- components/
+|   |-- Banner.js
+|-- hooks/
+|   |-- useTopBannerFetch.js
+|-- redux/
+    |-- store.js
+    |-- topBannerSlice.js
+|-- services/
+    |--api
+        |- fetchBanners.js
+|-- App.js
+|-- .env
+|-- index.js
+</code></pre><h4 id=step-1-setting-up-axios-and-async-thunks>Step 1: Setting Up Axios and Async Thunks</h4>
+<p>First, we need to set up an asynchronous function to fetch data from our backend API using Axios and Redux Toolkit’s <code>createAsyncThunk</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>//fetchBanners.js
+</span><span style=color:#6272a4></span>
+<span style=color:#ff79c6>import</span> { createAsyncThunk } from <span style=color:#f1fa8c>&#34;@reduxjs/toolkit&#34;</span>;
+<span style=color:#ff79c6>import</span> axios from <span style=color:#f1fa8c>&#34;axios&#34;</span>;
+
+<span style=color:#ff79c6>const</span> fetchBannerMiddleware <span style=color:#ff79c6>=</span> createAsyncThunk(<span style=color:#f1fa8c>&#39;fetchTopBanners&#39;</span>, <span style=color:#ff79c6>async</span> () =&gt; {
+    <span style=color:#ff79c6>const</span> response <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>await</span> axios.get(process.env.REACT_APP_BANNER_URI);
+    <span style=color:#ff79c6>return</span> response.data;
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> fetchBannerMiddleware;
+</code></pre></div><p>Here, <code>fetchBannerMiddleware</code> is an asynchronous thunk that fetches banner data from the backend API defined by the environment variable <code>REACT_APP_BANNER_URI</code>.</p>
+<h4 id=step-2-defining-environment-variables>Step 2: Defining Environment Variables</h4>
+<p>Define your backend URLs in a <code>.env</code> file at the root of your project. This helps manage URLs easily across different environments (development, production, etc.). Keep in mind that in order to load these data property names should start with &lsquo;REACT_APP_&rsquo;</p>
+<pre tabindex=0><code>REACT_APP_BACKEND_URI=http://localhost:8080
+REACT_APP_BANNER_URI=http://localhost:8080/banner
+</code></pre><h4 id=step-3-creating-a-redux-slice>Step 3: Creating a Redux Slice</h4>
+<p>Next, create a Redux slice to manage the state of the fetched data. This slice will handle the different states of the fetch request (pending, fulfilled, and rejected).</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// topBannerSlice.js
+</span><span style=color:#6272a4></span>
+<span style=color:#ff79c6>import</span> { createSlice } from <span style=color:#f1fa8c>&#34;@reduxjs/toolkit&#34;</span>;
+<span style=color:#ff79c6>import</span> fetchBannerMiddleware from <span style=color:#f1fa8c>&#34;../services/api/fetchBanners&#34;</span>;
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> topBannerSlice <span style=color:#ff79c6>=</span> createSlice({
+  name<span style=color:#ff79c6>:</span> <span style=color:#f1fa8c>&#34;topBanner&#34;</span>,
+  initialState<span style=color:#ff79c6>:</span> {
+    topBanner<span style=color:#ff79c6>:</span> <span style=color:#ff79c6>false</span>,
+    banners<span style=color:#ff79c6>:</span> [],
+    status<span style=color:#ff79c6>:</span> <span style=color:#f1fa8c>&#39;init&#39;</span>,
+    errorData<span style=color:#ff79c6>:</span> <span style=color:#ff79c6>null</span>
+  },
+  reducers<span style=color:#ff79c6>:</span> {},
+  extraReducers<span style=color:#ff79c6>:</span> (builder) =&gt; {
+    builder
+      .addCase(fetchBannerMiddleware.fulfilled, (state, action) =&gt; {
+        state.banners <span style=color:#ff79c6>=</span> action.payload;
+        state.status <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;success&#39;</span>;
+      })
+      .addCase(fetchBannerMiddleware.rejected, (state, action) =&gt; {
+        state.errorData <span style=color:#ff79c6>=</span> action.payload;
+        state.status <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;error&#39;</span>;
+      })
+      .addCase(fetchBannerMiddleware.pending, (state) =&gt; {
+        state.status <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;pending&#39;</span>;
+      });
+  },
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> topBannerSlice.reducer;
+</code></pre></div><h4 id=step-4-configuring-the-store>Step 4: Configuring the Store</h4>
+<p>Configure the Redux store to include the new slice. This ensures that the state managed by the slice is part of the global state.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
+<span style=color:#6272a4>// store.js
+</span><span style=color:#6272a4></span>
+<span style=color:#ff79c6>import</span> { configureStore } from <span style=color:#f1fa8c>&#34;@reduxjs/toolkit&#34;</span>;
+<span style=color:#ff79c6>import</span> topBannerReducer from <span style=color:#f1fa8c>&#34;../slices/topBannerSlice&#34;</span>; <span style=color:#6272a4>// Adjust the import path as necessary
+</span><span style=color:#6272a4></span>
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> store <span style=color:#ff79c6>=</span> configureStore({
+  reducer<span style=color:#ff79c6>:</span> { bannerReducer<span style=color:#ff79c6>:</span> persistedReducer },
+});
+</code></pre></div><h4 id=step-5-creating-a-custom-hook>Step 5: Creating a Custom Hook</h4>
+<p>Create a custom hook to fetch the banner data and return the state values. This hook will be used in your components to access the data.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// useTopBannerFetch.js
+</span><span style=color:#6272a4></span>
+<span style=color:#ff79c6>import</span> { useDispatch, useSelector } from <span style=color:#f1fa8c>&#34;react-redux&#34;</span>;
+<span style=color:#ff79c6>import</span> fetchBannerMiddleware from <span style=color:#f1fa8c>&#34;../services/api/fetchBanners&#34;</span>;
+<span style=color:#ff79c6>import</span> { useEffect } from <span style=color:#f1fa8c>&#34;react&#34;</span>;
+
+<span style=color:#ff79c6>const</span> useTopBannerFetch <span style=color:#ff79c6>=</span> () =&gt; {
+    <span style=color:#ff79c6>const</span> dispatch <span style=color:#ff79c6>=</span> useDispatch();
+    <span style=color:#ff79c6>const</span> bannerData <span style=color:#ff79c6>=</span> useSelector((state) =&gt; state.bannerReducer.banners);
+    <span style=color:#ff79c6>const</span> status <span style=color:#ff79c6>=</span> useSelector((state) =&gt; state.bannerReducer.status);
+    <span style=color:#ff79c6>const</span> error <span style=color:#ff79c6>=</span> useSelector((state) =&gt; state.bannerReducer.errorData);
+
+    useEffect(() =&gt; {
+        dispatch(fetchBannerMiddleware());
+    }, [dispatch]);
+
+    <span style=color:#ff79c6>return</span> { bannerData, status, error };
+};
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> useTopBannerFetch;
+</code></pre></div><h4 id=step-6-using-the-custom-hook-in-a-component>Step 6: Using the Custom Hook in a Component</h4>
+<p>Finally, use the custom hook in your component to fetch and display the banner data.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// Banner.js
+</span><span style=color:#6272a4></span>
+<span style=color:#ff79c6>import</span> React, { useState } from <span style=color:#f1fa8c>&#34;react&#34;</span>;
+<span style=color:#ff79c6>import</span> { Link } from <span style=color:#f1fa8c>&#34;react-router-dom&#34;</span>;
+<span style=color:#ff79c6>import</span> Slider from <span style=color:#f1fa8c>&#34;react-slick&#34;</span>; <span style=color:#6272a4>// Assuming you&#39;re using react-slick for the slider
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> Image from <span style=color:#f1fa8c>&#34;../designLayouts/Image&#34;</span>;
+<span style=color:#ff79c6>import</span> useTopBannerFetch from <span style=color:#f1fa8c>&#34;../../hooks/useTopBannerFetch&#34;</span>;
+
+<span style=color:#ff79c6>const</span> Banner <span style=color:#ff79c6>=</span> () =&gt; {
+  <span style=color:#ff79c6>const</span> [dotActive, setDocActive] <span style=color:#ff79c6>=</span> useState(<span style=color:#bd93f9>0</span>);
+  <span style=color:#ff79c6>const</span> { bannerData, status, error } <span style=color:#ff79c6>=</span> useTopBannerFetch();
+
+  <span style=color:#ff79c6>if</span> (status <span style=color:#ff79c6>===</span> <span style=color:#f1fa8c>&#39;pending&#39;</span>) <span style=color:#ff79c6>return</span> <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span>Loading...<span style=color:#ff79c6>&lt;</span>/div&gt;;
+  <span style=color:#ff79c6>if</span> (status <span style=color:#ff79c6>===</span> <span style=color:#f1fa8c>&#39;error&#39;</span>) <span style=color:#ff79c6>return</span> <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span><span style=color:#8be9fd;font-style:italic>Error</span><span style=color:#ff79c6>:</span> {error}<span style=color:#ff79c6>&lt;</span>/div&gt;;
+  <span style=color:#6272a4>// other codes 
+</span><span style=color:#6272a4></span>  <span style=color:#ff79c6>return</span> (
+    <span style=color:#ff79c6>&lt;</span>Slider {...settings}<span style=color:#ff79c6>&gt;</span>
+      {bannerData <span style=color:#ff79c6>&amp;&amp;</span> bannerData.map((banner) =&gt; (
+        <span style=color:#ff79c6>&lt;</span>Link to<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;/offer&#34;</span> key<span style=color:#ff79c6>=</span>{banner.id}<span style=color:#ff79c6>&gt;</span>
+          <span style=color:#ff79c6>&lt;</span>div<span style=color:#ff79c6>&gt;</span>
+            <span style=color:#ff79c6>&lt;</span>Image imgSrc<span style=color:#ff79c6>=</span>{banner.imgSrc} <span style=color:#ff79c6>/&gt;</span>
+          <span style=color:#ff79c6>&lt;</span>/div&gt;
+        <span style=color:#ff79c6>&lt;</span>/Link&gt;
+      ))}
+    <span style=color:#ff79c6>&lt;</span>/Slider&gt;
+  );
+};
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> Banner;
+</code></pre></div><h3 id=conclusion>Conclusion</h3>
+<p>By following these steps, you can effectively integrate a React application with a backend API using Redux Toolkit. This approach ensures a clean and manageable way to handle asynchronous data fetching and state management. Use this template as a foundation and adjust it according to your project requirements. Happy coding!</p>
+<hr>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/dev-react-redux-middleware/ data-toggle=tooltip data-placement=top title="Mastering Redux Middleware">&larr;
+Previous Post</a>
+</li>
+<li class=next>
+<a href=/post/dev-java-spring-ioc/ data-toggle=tooltip data-placement=top title="Demystifying IOC Containers: A Beginner's Guide">Next
+Post &rarr;</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<div class=side-catalog>
+<section class="visible-md visible-lg">
+<hr><h5><a href=/about>ABOUT AUTHOR</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+<ul class=list-inline>
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TOPIC</a></h5>
+<div class=tags>
+<a href=/%20/tags/design-principles title=design-principles>
+design-principles
+</a>
+<a href=/%20/tags/development title=development>
+development
+</a>
+<a href=/%20/tags/developments title=developments>
+developments
+</a>
+<a href=/%20/tags/front-end-developemnt title=front-end-developemnt>
+front-end-developemnt
+</a>
+<a href=/%20/tags/functional-interfaces title=functional-interfaces>
+functional-interfaces
+</a>
+<a href=/%20/tags/immutability title=immutability>
+immutability
+</a>
+<a href=/%20/tags/java title=java>
+java
+</a>
+<a href=/%20/tags/java-lambda title=java-lambda>
+java-lambda
+</a>
+<a href=/%20/tags/middleware title=middleware>
+middleware
+</a>
+<a href=/%20/tags/psychology title=psychology>
+psychology
+</a>
+<a href=/%20/tags/react title=react>
+react
+</a>
+<a href=/%20/tags/redux title=redux>
+redux
+</a>
+<a href=/%20/tags/security title=security>
+security
+</a>
+<a href=/%20/tags/solid title=solid>
+solid
+</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div class="visible-xs-block hidden-sm hidden-md hidden-lg">
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<section class="visible-md visible-lg visible-sm visible-xs-block">
+<hr><h5><a href=/about>ABOUT</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=max-width:200px;height:auto;cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+</div>
+</section>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</div>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>

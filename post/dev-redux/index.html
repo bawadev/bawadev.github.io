@@ -180,30 +180,7 @@ post-container">
 <h3 id=setting-up-redux-in-a-react-application>Setting Up Redux in a React Application</h3>
 <p>To use Redux with React, you need to install the necessary packages:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install redux react-redux
-</code></pre></div><h3 id=creating-a-redux-store>Creating a Redux Store</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// store.js
-</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> { createStore } from <span style=color:#f1fa8c>&#39;redux&#39;</span>;
-<span style=color:#ff79c6>import</span> rootReducer from <span style=color:#f1fa8c>&#39;./reducers&#39;</span>;
-
-<span style=color:#ff79c6>const</span> store <span style=color:#ff79c6>=</span> createStore(rootReducer);
-
-<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> store;
-</code></pre></div><p>In Redux, the store is a single JavaScript object that holds the entire state of your application. It serves as the &ldquo;single source of truth&rdquo; and allows you to access and update the state in a predictable manner.</p>
-<ol>
-<li>
-<p><strong>Importing <code>createStore</code></strong>: Redux provides a <code>createStore</code> function, which is used to create a Redux store. This function needs to be imported from the <code>redux</code> package.</p>
-</li>
-<li>
-<p><strong>Importing Root Reducer</strong>: The store is initialized with a root reducer, which is a function that specifies how the application&rsquo;s state should change in response to actions. The root reducer combines multiple reducers into a single reducer function using <code>combineReducers</code> (not shown in the provided code snippet).</p>
-</li>
-<li>
-<p><strong>Creating the Store</strong>: Once you&rsquo;ve imported <code>createStore</code> and the root reducer, you can create the Redux store by calling <code>createStore</code> and passing in the root reducer as an argument.</p>
-</li>
-<li>
-<p><strong>Exporting the Store</strong>: Finally, you export the created store so that it can be imported and used throughout your application.</p>
-</li>
-</ol>
-<h3 id=defining-reducers>Defining Reducers</h3>
+</code></pre></div><h3 id=defining-reducers>Defining Reducers</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// reducers.js
 </span><span style=color:#6272a4></span><span style=color:#ff79c6>const</span> initialState <span style=color:#ff79c6>=</span> {
   <span style=color:#6272a4>// Define initial state properties
@@ -237,6 +214,29 @@ post-container">
 </li>
 <li>
 <p><strong>Exporting the Root Reducer</strong>: Finally, you export the root reducer function so that it can be combined with other reducers if needed and used to create the Redux store.</p>
+</li>
+</ol>
+<h3 id=creating-a-redux-store>Creating a Redux Store</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#6272a4>// store.js
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>import</span> { createStore } from <span style=color:#f1fa8c>&#39;redux&#39;</span>;
+<span style=color:#ff79c6>import</span> rootReducer from <span style=color:#f1fa8c>&#39;./reducers&#39;</span>;
+
+<span style=color:#ff79c6>const</span> store <span style=color:#ff79c6>=</span> createStore(rootReducer);
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> store;
+</code></pre></div><p>In Redux, the store is a single JavaScript object that holds the entire state of your application. It serves as the &ldquo;single source of truth&rdquo; and allows you to access and update the state in a predictable manner.</p>
+<ol>
+<li>
+<p><strong>Importing <code>createStore</code></strong>: Redux provides a <code>createStore</code> function, which is used to create a Redux store. This function needs to be imported from the <code>redux</code> package.</p>
+</li>
+<li>
+<p><strong>Importing Root Reducer</strong>: The store is initialized with a root reducer, which is a function that specifies how the application&rsquo;s state should change in response to actions. The root reducer combines multiple reducers into a single reducer function using <code>combineReducers</code> (not shown in the provided code snippet).</p>
+</li>
+<li>
+<p><strong>Creating the Store</strong>: Once you&rsquo;ve imported <code>createStore</code> and the root reducer, you can create the Redux store by calling <code>createStore</code> and passing in the root reducer as an argument.</p>
+</li>
+<li>
+<p><strong>Exporting the Store</strong>: Finally, you export the created store so that it can be imported and used throughout your application.</p>
 </li>
 </ol>
 <h3 id=providing-redux-store-to-the-react-app>Providing Redux Store to the React App</h3>
@@ -390,27 +390,20 @@ Post &rarr;</a>
 visible-lg-block
 sidebar-container
 catalog-container">
+<div class=side-catalog>
 <section class="visible-md visible-lg">
 <hr><h5><a href=/about>ABOUT AUTHOR</a></h5>
 <div class=short-about>
 <a href=/about>
 <img src=/img/zhaohuabing.png alt=avatar style=cursor:pointer>
 </a>
-<p>Pasindu Bawantha,Software Engineer, Tech Writer and Life Adventurer</p>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
 <ul class=list-inline>
 <li>
 <a href=mailto:inbox.bawantha@gmail.com>
 <span class="fa-stack fa-lg">
 <i class="fa fa-circle fa-stack-2x"></i>
 <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-</span>
-</a>
-</li>
-<li>
-<a target=_blank href=/your%20wechat%20qr%20code%20image>
-<span class="fa-stack fa-lg">
-<i class="fas fa-circle fa-stack-2x"></i>
-<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
 </span>
 </a>
 </li>
@@ -441,7 +434,6 @@ catalog-container">
 </ul>
 </div>
 </section>
-<div class=side-catalog>
 <hr class="hidden-sm hidden-xs">
 <h5>
 <a class=catalog-toggle href=#>CATALOG</a>
@@ -480,6 +472,9 @@ java
 <a href=/%20/tags/java-lambda title=java-lambda>
 java-lambda
 </a>
+<a href=/%20/tags/middleware title=middleware>
+middleware
+</a>
 <a href=/%20/tags/psychology title=psychology>
 psychology
 </a>
@@ -513,7 +508,7 @@ solid
 <a href=/about>
 <img src=/img/zhaohuabing.png alt=avatar style=max-width:200px;height:auto;cursor:pointer>
 </a>
-<p>Pasindu Bawantha,Software Engineer, Tech Writer and Life Adventurer</p>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
 </div>
 </section>
 </ul>

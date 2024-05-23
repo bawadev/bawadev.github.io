@@ -1,0 +1,469 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_Middleware.jpg">
+<meta property="twitter:image" content="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_Middleware.jpg">
+<meta name=title content="Mastering Redux Middleware">
+<meta property="og:title" content="Mastering Redux Middleware">
+<meta property="twitter:title" content="Mastering Redux Middleware">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="Redux middleware is a powerful feature that allows you to extend the capabilities of Redux. Middleware sits between the dispatching of an action and the moment it reaches the reducer, enabling you to intercept and act upon actions, perform asynchronous operations, and implement various cross-cutting concerns such as logging, crash reporting, and more.">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>Mastering Redux Middleware | BawaDev</title>
+<link rel=canonical href=/post/dev-react-redux-middleware/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/gallery//>Gallery</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_Middleware.jpg)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+<a class=tag href=/%20/tags/react title=React>
+React
+</a>
+<a class=tag href=/%20/tags/middleware title=Middleware>
+Middleware
+</a>
+<a class=tag href=/%20/tags/redux title=Redux>
+Redux
+</a>
+</div>
+<h1>Mastering Redux Middleware</h1>
+<h2 class=subheading>Enhancing Your Redux Applications</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<h2 id=introduction>Introduction</h2>
+<p>Redux middleware is a powerful feature that allows you to extend the capabilities of Redux. Middleware sits between the dispatching of an action and the moment it reaches the reducer, enabling you to intercept and act upon actions, perform asynchronous operations, and implement various cross-cutting concerns such as logging, crash reporting, and more.</p>
+<p>In this article, we will explore the concept of Redux middleware, understand how it works, and learn how to create and apply custom middleware in a Redux application.</p>
+<h2 id=what-is-redux-middleware>What is Redux Middleware?</h2>
+<p>Redux middleware provides a third-party extension point between dispatching an action and the moment it reaches the reducer. Middleware can:</p>
+<ul>
+<li>Intercept actions before they reach the reducer.</li>
+<li>Perform side effects such as data fetching or logging.</li>
+<li>Dispatch other actions based on the intercepted actions.</li>
+</ul>
+<h2 id=how-middleware-works>How Middleware Works</h2>
+<p>Middleware is essentially a function that takes the <code>store</code> object, a <code>next</code> function, and an <code>action</code>, and returns a function. Here’s a basic example:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#ff79c6>const</span> exampleMiddleware <span style=color:#ff79c6>=</span> store =&gt; next =&gt; action =&gt; {
+  console.log(<span style=color:#f1fa8c>&#39;Dispatching:&#39;</span>, action);
+  <span style=color:#8be9fd;font-style:italic>let</span> result <span style=color:#ff79c6>=</span> next(action);
+  console.log(<span style=color:#f1fa8c>&#39;Next State:&#39;</span>, store.getState());
+  <span style=color:#ff79c6>return</span> result;
+};
+</code></pre></div><p>In this example:</p>
+<ul>
+<li><code>store</code> gives access to the Redux store.</li>
+<li><code>next</code> is a function that passes the action to the next middleware in the chain.</li>
+<li><code>action</code> is the action being dispatched.</li>
+</ul>
+<h2 id=applying-middleware>Applying Middleware</h2>
+<p>To apply middleware, you use the <code>applyMiddleware</code> function from Redux. However, with Redux Toolkit, middleware setup is simplified using <code>configureStore</code>.</p>
+<h3 id=example-applying-a-logger-middleware>Example: Applying a Logger Middleware</h3>
+<p>First, let&rsquo;s create a logger middleware:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#ff79c6>const</span> loggerMiddleware <span style=color:#ff79c6>=</span> store =&gt; next =&gt; action =&gt; {
+  console.log(<span style=color:#f1fa8c>&#39;Dispatching:&#39;</span>, action);
+  <span style=color:#8be9fd;font-style:italic>let</span> result <span style=color:#ff79c6>=</span> next(action);
+  console.log(<span style=color:#f1fa8c>&#39;Next State:&#39;</span>, store.getState());
+  <span style=color:#ff79c6>return</span> result;
+};
+</code></pre></div><p>Next, integrate this middleware into the Redux store configuration:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#ff79c6>import</span> { configureStore } from <span style=color:#f1fa8c>&#39;@reduxjs/toolkit&#39;</span>;
+<span style=color:#ff79c6>import</span> rootReducer from <span style=color:#f1fa8c>&#39;./rootReducer&#39;</span>; <span style=color:#6272a4>// Assuming you have a rootReducer
+</span><span style=color:#6272a4></span>
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> store <span style=color:#ff79c6>=</span> configureStore({
+  reducer<span style=color:#ff79c6>:</span> rootReducer,
+  middleware<span style=color:#ff79c6>:</span> (getDefaultMiddleware) =&gt; getDefaultMiddleware().concat(loggerMiddleware),
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> store;
+</code></pre></div><h2 id=creating-custom-middleware>Creating Custom Middleware</h2>
+<p>Custom middleware can be tailored to specific needs such as error handling, authentication, or any side effect management.</p>
+<h3 id=example-error-handling-middleware>Example: Error Handling Middleware</h3>
+<p>Let&rsquo;s create an error handling middleware that logs errors and dispatches an action to show a notification:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#ff79c6>const</span> errorHandlingMiddleware <span style=color:#ff79c6>=</span> store =&gt; next =&gt; action =&gt; {
+  <span style=color:#ff79c6>if</span> (action.type.endsWith(<span style=color:#f1fa8c>&#39;rejected&#39;</span>)) {
+    console.error(<span style=color:#f1fa8c>&#39;Error:&#39;</span>, action.error);
+    store.dispatch({ type<span style=color:#ff79c6>:</span> <span style=color:#f1fa8c>&#39;notifications/show&#39;</span>, payload<span style=color:#ff79c6>:</span> action.error.message });
+  }
+  <span style=color:#ff79c6>return</span> next(action);
+};
+</code></pre></div><p>Integrate this middleware similarly:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#ff79c6>import</span> { configureStore } from <span style=color:#f1fa8c>&#39;@reduxjs/toolkit&#39;</span>;
+<span style=color:#ff79c6>import</span> rootReducer from <span style=color:#f1fa8c>&#39;./rootReducer&#39;</span>;
+<span style=color:#ff79c6>import</span> loggerMiddleware from <span style=color:#f1fa8c>&#39;./loggerMiddleware&#39;</span>;
+<span style=color:#ff79c6>import</span> errorHandlingMiddleware from <span style=color:#f1fa8c>&#39;./errorHandlingMiddleware&#39;</span>;
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> store <span style=color:#ff79c6>=</span> configureStore({
+  reducer<span style=color:#ff79c6>:</span> rootReducer,
+  middleware<span style=color:#ff79c6>:</span> (getDefaultMiddleware) =&gt; getDefaultMiddleware().concat(loggerMiddleware, errorHandlingMiddleware),
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> store;
+</code></pre></div><h2 id=thunk-middleware-for-asynchronous-actions>Thunk Middleware for Asynchronous Actions</h2>
+<p>One of the most common uses of middleware is handling asynchronous actions. Redux Thunk middleware allows you to write action creators that return a function instead of an action. This function can perform side effects and dispatch actions based on the outcome.</p>
+<h3 id=example-using-thunk-middleware>Example: Using Thunk Middleware</h3>
+<p>Thunk middleware is included by default with Redux Toolkit. Here’s how you can use it to fetch data from an API:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#ff79c6>import</span> { createSlice, createAsyncThunk } from <span style=color:#f1fa8c>&#39;@reduxjs/toolkit&#39;</span>;
+<span style=color:#ff79c6>import</span> axios from <span style=color:#f1fa8c>&#39;axios&#39;</span>;
+
+<span style=color:#6272a4>// Async thunk to fetch data
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> fetchData <span style=color:#ff79c6>=</span> createAsyncThunk(<span style=color:#f1fa8c>&#39;data/fetchData&#39;</span>, <span style=color:#ff79c6>async</span> () =&gt; {
+  <span style=color:#ff79c6>const</span> response <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>await</span> axios.get(<span style=color:#f1fa8c>&#39;https://api.example.com/data&#39;</span>);
+  <span style=color:#ff79c6>return</span> response.data;
+});
+
+<span style=color:#ff79c6>const</span> dataSlice <span style=color:#ff79c6>=</span> createSlice({
+  name<span style=color:#ff79c6>:</span> <span style=color:#f1fa8c>&#39;data&#39;</span>,
+  initialState<span style=color:#ff79c6>:</span> { items<span style=color:#ff79c6>:</span> [], status<span style=color:#ff79c6>:</span> <span style=color:#f1fa8c>&#39;idle&#39;</span>, error<span style=color:#ff79c6>:</span> <span style=color:#ff79c6>null</span> },
+  reducers<span style=color:#ff79c6>:</span> {},
+  extraReducers<span style=color:#ff79c6>:</span> (builder) =&gt; {
+    builder
+      .addCase(fetchData.pending, (state) =&gt; {
+        state.status <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;loading&#39;</span>;
+      })
+      .addCase(fetchData.fulfilled, (state, action) =&gt; {
+        state.status <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;succeeded&#39;</span>;
+        state.items <span style=color:#ff79c6>=</span> action.payload;
+      })
+      .addCase(fetchData.rejected, (state, action) =&gt; {
+        state.status <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#39;failed&#39;</span>;
+        state.error <span style=color:#ff79c6>=</span> action.error.message;
+      });
+  },
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> dataSlice.reducer;
+</code></pre></div><h2 id=advanced-middleware-combining-multiple-middleware>Advanced Middleware: Combining Multiple Middleware</h2>
+<p>In real-world applications, you often need to combine multiple middleware to handle different concerns. Redux Toolkit allows you to easily concatenate multiple middleware.</p>
+<h3 id=example-combining-logger-error-handling-and-thunk-middleware>Example: Combining Logger, Error Handling, and Thunk Middleware</h3>
+<p>Here’s how you can combine different middleware:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#ff79c6>import</span> { configureStore } from <span style=color:#f1fa8c>&#39;@reduxjs/toolkit&#39;</span>;
+<span style=color:#ff79c6>import</span> rootReducer from <span style=color:#f1fa8c>&#39;./rootReducer&#39;</span>;
+<span style=color:#ff79c6>import</span> loggerMiddleware from <span style=color:#f1fa8c>&#39;./loggerMiddleware&#39;</span>;
+<span style=color:#ff79c6>import</span> errorHandlingMiddleware from <span style=color:#f1fa8c>&#39;./errorHandlingMiddleware&#39;</span>;
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>const</span> store <span style=color:#ff79c6>=</span> configureStore({
+  reducer<span style=color:#ff79c6>:</span> rootReducer,
+  middleware<span style=color:#ff79c6>:</span> (getDefaultMiddleware) =&gt; getDefaultMiddleware().concat(
+    loggerMiddleware,
+    errorHandlingMiddleware,
+  ),
+});
+
+<span style=color:#ff79c6>export</span> <span style=color:#ff79c6>default</span> store;
+</code></pre></div><h2 id=middleware-best-practices>Middleware Best Practices</h2>
+<ul>
+<li><strong>Keep Middleware Pure</strong>: Middleware should ideally be pure functions, meaning they should not have side effects other than those they are explicitly designed to handle.</li>
+<li><strong>Error Handling</strong>: Implement comprehensive error handling within your middleware to ensure that unexpected issues do not crash your application.</li>
+<li><strong>Testing</strong>: Write tests for your middleware to ensure they behave as expected. This can include unit tests for individual middleware and integration tests for middleware chains.</li>
+<li><strong>Performance</strong>: Be mindful of the performance implications of your middleware, especially if it involves intensive computations or frequent logging.</li>
+</ul>
+<h2 id=conclusion>Conclusion</h2>
+<p>Redux middleware is a versatile and powerful tool that extends the functionality of your Redux store. By understanding and leveraging middleware, you can handle side effects, perform asynchronous operations, and implement sophisticated state management patterns in your applications. With Redux Toolkit, integrating middleware into your Redux setup is straightforward, allowing you to focus on building robust and maintainable applications.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href=https://redux-toolkit.js.org/>Redux Toolkit Documentation</a></li>
+<li><a href=https://redux.js.org/understanding/thinking-in-redux/middleware>Redux Middleware</a></li>
+<li><a href=https://github.com/reduxjs/redux-thunk>Redux Thunk</a></li>
+<li><a href=https://react-redux.js.org/>React Redux Documentation</a></li>
+</ul>
+<p>Happy coding!</p>
+<hr>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/dev-react-redux-fetch-api-data/ data-toggle=tooltip data-placement=top title="React js Backend Integration">&larr;
+Previous Post</a>
+</li>
+<li class=next>
+<a href=/post/dev-react-redux-fetch-api-data-template/ data-toggle=tooltip data-placement=top title="Integrating a React Application with a Backend API Using Redux Toolkit">Next
+Post &rarr;</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<div class=side-catalog>
+<section class="visible-md visible-lg">
+<hr><h5><a href=/about>ABOUT AUTHOR</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+<ul class=list-inline>
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TOPIC</a></h5>
+<div class=tags>
+<a href=/%20/tags/design-principles title=design-principles>
+design-principles
+</a>
+<a href=/%20/tags/development title=development>
+development
+</a>
+<a href=/%20/tags/developments title=developments>
+developments
+</a>
+<a href=/%20/tags/front-end-developemnt title=front-end-developemnt>
+front-end-developemnt
+</a>
+<a href=/%20/tags/functional-interfaces title=functional-interfaces>
+functional-interfaces
+</a>
+<a href=/%20/tags/immutability title=immutability>
+immutability
+</a>
+<a href=/%20/tags/java title=java>
+java
+</a>
+<a href=/%20/tags/java-lambda title=java-lambda>
+java-lambda
+</a>
+<a href=/%20/tags/middleware title=middleware>
+middleware
+</a>
+<a href=/%20/tags/psychology title=psychology>
+psychology
+</a>
+<a href=/%20/tags/react title=react>
+react
+</a>
+<a href=/%20/tags/redux title=redux>
+redux
+</a>
+<a href=/%20/tags/security title=security>
+security
+</a>
+<a href=/%20/tags/solid title=solid>
+solid
+</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div class="visible-xs-block hidden-sm hidden-md hidden-lg">
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<section class="visible-md visible-lg visible-sm visible-xs-block">
+<hr><h5><a href=/about>ABOUT</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=max-width:200px;height:auto;cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+</div>
+</section>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</div>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/yourlinkedinid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>
