@@ -1,0 +1,586 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fc4kzfzbh6wi2ukkodudl.png">
+<meta property="twitter:image" content="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fc4kzfzbh6wi2ukkodudl.png">
+<meta name=title content="Introduction to Docker">
+<meta property="og:title" content="Introduction to Docker">
+<meta property="twitter:title" content="Introduction to Docker">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="Spring Boot is a powerful framework that simplifies the development of production-ready applications. Annotations play a crucial role in Spring Boot by providing metadata and configuration to the Spring container. This guide explains various essential annotations used in Spring Boot, their usage, and provides examples for each.">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>Introduction to Docker | BawaDev</title>
+<link rel=canonical href=/post/dev-java-springboot-annotations/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/gallery//>Gallery</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fc4kzfzbh6wi2ukkodudl.png)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+<a class=tag href=/%20/tags/java title=Java>
+Java
+</a>
+<a class=tag href=/%20/tags/spring-boot title="Spring boot">
+Spring boot
+</a>
+<a class=tag href=/%20/tags/spring-annotations title="Spring annotations">
+Spring annotations
+</a>
+</div>
+<h1>Introduction to Docker</h1>
+<h2 class=subheading>A zero to hero docker guide for java developers</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<p>Spring Boot is a powerful framework that simplifies the development of production-ready applications. Annotations play a crucial role in Spring Boot by providing metadata and configuration to the Spring container. This guide explains various essential annotations used in Spring Boot, their usage, and provides examples for each.</p>
+<h2 id=table-of-contents>Table of Contents</h2>
+<ol>
+<li><a href=#springbootapplication>@SpringBootApplication</a></li>
+<li><a href=#autowired>@Autowired</a></li>
+<li><a href=#restcontroller>@RestController</a></li>
+<li><a href=#entity>@Entity</a></li>
+<li><a href=#id>@Id</a></li>
+<li><a href=#generatedvalue>@GeneratedValue</a></li>
+<li><a href=#service>@Service</a></li>
+<li><a href=#repository>@Repository</a></li>
+<li><a href=#validation-annotations>Validation Annotations</a></li>
+<li><a href=#lombok-annotations>Lombok Annotations</a></li>
+<li><a href=#custom-exception-handling>Custom Exception Handling</a></li>
+</ol>
+<h2 id=springbootapplication>@SpringBootApplication</h2>
+<h3 id=explanation>Explanation</h3>
+<ul>
+<li><strong>@Target(ElementType.TYPE)</strong>: This meta-annotation indicates that @SpringBootApplication can only be used on classes.</li>
+<li><strong>@Retention(RetentionPolicy.RUNTIME)</strong>: Specifies that the annotation is available at runtime.</li>
+<li><strong>@Inherited</strong>: Allows subclasses to inherit the annotation.</li>
+<li><strong>@EnableAutoConfiguration</strong>: Enables automatic configuration of beans based on the classpath settings.</li>
+<li><strong>@SpringBootConfiguration</strong>: Indicates that the class is a Spring Boot configuration class, typically used as the main configuration class.</li>
+<li><strong>@ComponentScan</strong>: Enables component scanning to automatically detect and register beans within the specified package.</li>
+</ul>
+<h3 id=usage>Usage</h3>
+<p>Used to mark the main class of a Spring Boot application, aggregating several other annotations.</p>
+<h3 id=example>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@SpringBootApplication
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MySpringBootApplication</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>static</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>main</span><span style=color:#ff79c6>(</span>String<span style=color:#ff79c6>[]</span> args<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        SpringApplication<span style=color:#ff79c6>.</span><span style=color:#50fa7b>run</span><span style=color:#ff79c6>(</span>MySpringBootApplication<span style=color:#ff79c6>.</span><span style=color:#50fa7b>class</span><span style=color:#ff79c6>,</span> args<span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=autowired>@Autowired</h2>
+<h3 id=explanation-1>Explanation</h3>
+<ul>
+<li>Automatically wires beans to satisfy dependencies.</li>
+</ul>
+<h3 id=usage-1>Usage</h3>
+<p>Used to inject dependencies automatically.</p>
+<h3 id=example-1>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Service
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyService</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> <span style=color:#8be9fd;font-style:italic>final</span> MyRepository myRepository<span style=color:#ff79c6>;</span>
+
+    @Autowired
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>MyService</span><span style=color:#ff79c6>(</span>MyRepository myRepository<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>this</span><span style=color:#ff79c6>.</span><span style=color:#50fa7b>myRepository</span> <span style=color:#ff79c6>=</span> myRepository<span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=restcontroller>@RestController</h2>
+<h3 id=explanation-2>Explanation</h3>
+<ul>
+<li><strong>description</strong>: Indicates that the class is a controller where each method returns a domain object instead of a view. It is a specialized version of @Controller.</li>
+</ul>
+<h3 id=usage-2>Usage</h3>
+<p>Used to create RESTful web services.</p>
+<h3 id=example-2>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@RestController
+@RequestMapping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;/api&#34;</span><span style=color:#ff79c6>)</span>
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyController</span> <span style=color:#ff79c6>{</span>
+    
+    @GetMapping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;/hello&#34;</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> String <span style=color:#50fa7b>sayHello</span><span style=color:#ff79c6>()</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>return</span> <span style=color:#f1fa8c>&#34;Hello, World!&#34;</span><span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+    
+    @PostMapping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;/create&#34;</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> MyEntity <span style=color:#50fa7b>createEntity</span><span style=color:#ff79c6>(</span>@RequestBody MyEntity entity<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// create and return entity
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>}</span>
+    
+    @DeleteMapping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;/delete/{id}&#34;</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd>void</span> <span style=color:#50fa7b>deleteEntity</span><span style=color:#ff79c6>(</span>@PathVariable<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;id&#34;</span><span style=color:#ff79c6>)</span> Long id<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// delete entity by id
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>}</span>
+    
+    @PutMapping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;/update/{id}&#34;</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> MyEntity <span style=color:#50fa7b>updateEntity</span><span style=color:#ff79c6>(</span>@PathVariable<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;id&#34;</span><span style=color:#ff79c6>)</span> Long id<span style=color:#ff79c6>,</span> @RequestBody MyEntity entity<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#6272a4>// update and return entity
+</span><span style=color:#6272a4></span>    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=entity>@Entity</h2>
+<h3 id=explanation-3>Explanation</h3>
+<ul>
+<li>Marks a class as a JPA entity representing a table in the database.</li>
+</ul>
+<h3 id=usage-3>Usage</h3>
+<p>Used to define a persistent domain object.</p>
+<h3 id=example-3>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Entity
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyEntity</span> <span style=color:#ff79c6>{</span>
+    
+    @Id
+    @GeneratedValue<span style=color:#ff79c6>(</span>strategy <span style=color:#ff79c6>=</span> GenerationType<span style=color:#ff79c6>.</span><span style=color:#50fa7b>AUTO</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> Long id<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>private</span> String name<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#6272a4>// getters and setters
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=id>@Id</h2>
+<h3 id=explanation-4>Explanation</h3>
+<ul>
+<li>Marks a field as the primary key of the entity.</li>
+</ul>
+<h3 id=usage-4>Usage</h3>
+<p>Used in conjunction with @Entity to define the primary key.</p>
+<h3 id=example-4>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Entity
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyEntity</span> <span style=color:#ff79c6>{</span>
+    
+    @Id
+    @GeneratedValue<span style=color:#ff79c6>(</span>strategy <span style=color:#ff79c6>=</span> GenerationType<span style=color:#ff79c6>.</span><span style=color:#50fa7b>AUTO</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> Long id<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>private</span> String name<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#6272a4>// getters and setters
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=generatedvalue>@GeneratedValue</h2>
+<h3 id=explanation-5>Explanation</h3>
+<ul>
+<li>Configures the way of incrementing the specified field (usually a primary key).</li>
+</ul>
+<h3 id=usage-5>Usage</h3>
+<p>Used with @Id to specify the generation strategy for the primary key.</p>
+<h3 id=example-5>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Entity
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyEntity</span> <span style=color:#ff79c6>{</span>
+    
+    @Id
+    @GeneratedValue<span style=color:#ff79c6>(</span>strategy <span style=color:#ff79c6>=</span> GenerationType<span style=color:#ff79c6>.</span><span style=color:#50fa7b>AUTO</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> Long id<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#8be9fd;font-style:italic>private</span> String name<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#6272a4>// getters and setters
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=service>@Service</h2>
+<h3 id=explanation-6>Explanation</h3>
+<ul>
+<li>Indicates that the annotated class is a service component in the service layer.</li>
+</ul>
+<h3 id=usage-6>Usage</h3>
+<p>Used to define a service that contains business logic.</p>
+<h3 id=example-6>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Service
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyService</span> <span style=color:#ff79c6>{</span>
+    
+    <span style=color:#8be9fd;font-style:italic>public</span> String <span style=color:#50fa7b>performService</span><span style=color:#ff79c6>()</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>return</span> <span style=color:#f1fa8c>&#34;Service performed&#34;</span><span style=color:#ff79c6>;</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=repository>@Repository</h2>
+<h3 id=explanation-7>Explanation</h3>
+<ul>
+<li>Indicates that the annotated interface is a repository, which abstracts data access and is used in the persistence layer.</li>
+</ul>
+<h3 id=usage-7>Usage</h3>
+<p>Used to define a data repository.</p>
+<h3 id=example-7>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Repository
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>interface</span> <span style=color:#50fa7b>MyRepository</span> <span style=color:#8be9fd;font-style:italic>extends</span> JpaRepository<span style=color:#ff79c6>&lt;</span>MyEntity<span style=color:#ff79c6>,</span> Long<span style=color:#ff79c6>&gt;</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#6272a4>// custom query methods
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=validation-annotations>Validation Annotations</h2>
+<h3 id=explanation-8>Explanation</h3>
+<ul>
+<li><strong>spring-boot-starter-validation</strong>: Provides validation support.</li>
+<li><strong>@NotBlank</strong>: Validates that a field is not null and the trimmed length is greater than zero.</li>
+<li><strong>@Valid</strong>: Triggers validation on the annotated element.</li>
+</ul>
+<h3 id=usage-8>Usage</h3>
+<p>Used for validating entity fields.</p>
+<h3 id=example-8>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Entity
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyEntity</span> <span style=color:#ff79c6>{</span>
+    
+    @Id
+    @GeneratedValue<span style=color:#ff79c6>(</span>strategy <span style=color:#ff79c6>=</span> GenerationType<span style=color:#ff79c6>.</span><span style=color:#50fa7b>AUTO</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> Long id<span style=color:#ff79c6>;</span>
+    
+    @NotBlank<span style=color:#ff79c6>(</span>message <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;Name cannot be blank&#34;</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String name<span style=color:#ff79c6>;</span>
+    
+    <span style=color:#6272a4>// getters and setters
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+</code></pre></div><p>In a controller:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@PostMapping<span style=color:#ff79c6>(</span><span style=color:#f1fa8c>&#34;/create&#34;</span><span style=color:#ff79c6>)</span>
+<span style=color:#8be9fd;font-style:italic>public</span> ResponseEntity<span style=color:#ff79c6>&lt;</span>MyEntity<span style=color:#ff79c6>&gt;</span> <span style=color:#50fa7b>createEntity</span><span style=color:#ff79c6>(</span>@Valid @RequestBody MyEntity entity<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+    <span style=color:#6272a4>// handle the creation
+</span><span style=color:#6272a4></span><span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=lombok-annotations>Lombok Annotations</h2>
+<h3 id=explanation-9>Explanation</h3>
+<ul>
+<li><strong>@Data</strong>: Generates getters, setters, equals, hashCode, and toString methods.</li>
+<li><strong>@Builder</strong>: Implements the builder pattern.</li>
+</ul>
+<h3 id=usage-9>Usage</h3>
+<p>Used to reduce boilerplate code.</p>
+<h3 id=example-9>Example</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@Data
+@Builder
+@Entity
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>MyEntity</span> <span style=color:#ff79c6>{</span>
+    
+    @Id
+    @GeneratedValue<span style=color:#ff79c6>(</span>strategy <span style=color:#ff79c6>=</span> GenerationType<span style=color:#ff79c6>.</span><span style=color:#50fa7b>AUTO</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> Long id<span style=color:#ff79c6>;</span>
+    
+    @NotBlank<span style=color:#ff79c6>(</span>message <span style=color:#ff79c6>=</span> <span style=color:#f1fa8c>&#34;Name cannot be blank&#34;</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>private</span> String name<span style=color:#ff79c6>;</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><h2 id=custom-exception-handling>Custom Exception Handling</h2>
+<h3 id=explanation-10>Explanation</h3>
+<ul>
+<li><strong>@ControllerAdvice</strong>: Allows global exception handling. Annotated class must extend <code>ResponseEntityExceptionHandler</code>.</li>
+<li><strong>@ResponseStatus</strong>: Specifies the HTTP status code to return.</li>
+</ul>
+<h3 id=usage-10>Usage</h3>
+<p>Used for handling exceptions globally.</p>
+<h3 id=example-10>Example</h3>
+<p>Custom exception:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>CustomException</span> <span style=color:#8be9fd;font-style:italic>extends</span> Exception <span style=color:#ff79c6>{</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#50fa7b>CustomException</span><span style=color:#ff79c6>(</span>String message<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#8be9fd;font-style:italic>super</span><span style=color:#ff79c6>(</span>message<span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><p>Controller advice:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>@ControllerAdvice
+<span style=color:#8be9fd;font-style:italic>public</span> <span style=color:#8be9fd;font-style:italic>class</span> <span style=color:#50fa7b>GlobalExceptionHandler</span> <span style=color:#8be9fd;font-style:italic>extends</span> ResponseEntityExceptionHandler <span style=color:#ff79c6>{</span>
+
+    @ExceptionHandler<span style=color:#ff79c6>(</span>CustomException<span style=color:#ff79c6>.</span><span style=color:#50fa7b>class</span><span style=color:#ff79c6>)</span>
+    @ResponseStatus<span style=color:#ff79c6>(</span>HttpStatus<span style=color:#ff79c6>.</span><span style=color:#50fa7b>BAD_REQUEST</span><span style=color:#ff79c6>)</span>
+    <span style=color:#8be9fd;font-style:italic>public</span> ResponseEntity<span style=color:#ff79c6>&lt;</span>String<span style=color:#ff79c6>&gt;</span> <span style=color:#50fa7b>handleCustomException</span><span style=color:#ff79c6>(</span>CustomException ex<span style=color:#ff79c6>)</span> <span style=color:#ff79c6>{</span>
+        <span style=color:#ff79c6>return</span> <span style=color:#ff79c6>new</span> ResponseEntity<span style=color:#ff79c6>&lt;&gt;(</span>ex<span style=color:#ff79c6>.</span><span style=color:#50fa7b>getMessage</span><span style=color:#ff79c6>(),</span> HttpStatus<span style=color:#ff79c6>.</span><span style=color:#50fa7b>BAD_REQUEST</span><span style=color:#ff79c6>);</span>
+    <span style=color:#ff79c6>}</span>
+<span style=color:#ff79c6>}</span>
+</code></pre></div><hr>
+<p>This guide provides an extensive overview of various annotations used in Spring Boot, covering their explanations, usage, and practical examples. By understanding and using these annotations effectively, you can streamline the development process and enhance the maintainability of your Spring Boot applications.</p>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/dev-java-lambda-1/ data-toggle=tooltip data-placement=top title="Java Lambda: All you need to know to code">&larr;
+Previous Post</a>
+</li>
+<li class=next>
+<a href=/post/dev-docker/ data-toggle=tooltip data-placement=top title="Introduction to Docker">Next
+Post &rarr;</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<div class=side-catalog>
+<section class="visible-md visible-lg">
+<hr><h5><a href=/about>ABOUT AUTHOR</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+<ul class=list-inline>
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/pasindu-munasinghe/>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TOPIC</a></h5>
+<div class=tags>
+<a href=/%20/tags/ci/cd title=ci/cd>
+ci/cd
+</a>
+<a href=/%20/tags/design-principles title=design-principles>
+design-principles
+</a>
+<a href=/%20/tags/development title=development>
+development
+</a>
+<a href=/%20/tags/developments title=developments>
+developments
+</a>
+<a href=/%20/tags/docker title=docker>
+docker
+</a>
+<a href=/%20/tags/front-end-developemnt title=front-end-developemnt>
+front-end-developemnt
+</a>
+<a href=/%20/tags/functional-interfaces title=functional-interfaces>
+functional-interfaces
+</a>
+<a href=/%20/tags/immutability title=immutability>
+immutability
+</a>
+<a href=/%20/tags/java title=java>
+java
+</a>
+<a href=/%20/tags/java-lambda title=java-lambda>
+java-lambda
+</a>
+<a href=/%20/tags/middleware title=middleware>
+middleware
+</a>
+<a href=/%20/tags/psychology title=psychology>
+psychology
+</a>
+<a href=/%20/tags/react title=react>
+react
+</a>
+<a href=/%20/tags/redux title=redux>
+redux
+</a>
+<a href=/%20/tags/security title=security>
+security
+</a>
+<a href=/%20/tags/solid title=solid>
+solid
+</a>
+<a href=/%20/tags/spring-annotations title=spring-annotations>
+spring-annotations
+</a>
+<a href=/%20/tags/spring-boot title=spring-boot>
+spring-boot
+</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div class="visible-xs-block hidden-sm hidden-md hidden-lg">
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<section class="visible-md visible-lg visible-sm visible-xs-block">
+<hr><h5><a href=/about>ABOUT</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=max-width:200px;height:auto;cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+</div>
+</section>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</div>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/pasindu-munasinghe/>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>

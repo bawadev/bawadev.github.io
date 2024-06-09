@@ -1,0 +1,494 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta property="og:site_name" content="BawaDev">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.docker.com/wp-content/uploads/2022/12/Docker-Temporary-Image-Social-Thumbnail-1200x630-1.png">
+<meta property="twitter:image" content="https://www.docker.com/wp-content/uploads/2022/12/Docker-Temporary-Image-Social-Thumbnail-1200x630-1.png">
+<meta name=title content="Introduction to Docker">
+<meta property="og:title" content="Introduction to Docker">
+<meta property="twitter:title" content="Introduction to Docker">
+<meta name=description content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="og:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:description" content="Pasindu Bawantha, programmer, tech enthusiast, life explorer | This is Bawantha's, discover a bigger world with you">
+<meta property="twitter:card" content="Docker is a platform designed to help developers build, ship, and run applications using containerization. It has revolutionized the way applications are deployed and managed, making the process more efficient and reliable. This article will provide an in-depth look at Docker, its benefits, installation, and practical usage.">
+<meta name=keyword content="Pasindu Bawantha, pasindubawantha, PasinduBawantha, , Pasindu Bawantha's blog, Bawantha's blog, Pasindu Bawantha Blog, Bawa Dev Blog, Bawadev, bawadev, tutorial, blog, tutorial website, internet, Web, cloud native, PaaS, Docker, Kubernetes, Java, J2EE, Spring, Spring Boot, springboot, life lessons, Microservice">
+<link rel="shortcut icon" href=/img/favicon.png>
+<title>Introduction to Docker | BawaDev</title>
+<link rel=canonical href=/post/dev-docker/>
+<link rel=stylesheet href=/css/bootstrap.min.css>
+<link rel=stylesheet href=/css/hugo-theme-cleanwhite.min.css>
+<link rel=stylesheet href=/css/zanshang.css>
+<link rel=stylesheet href=/css/font-awesome.all.min.css>
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js></script>
+<script src=/js/hux-blog.min.js></script>
+<script src=/js/lazysizes.min.js></script>
+</head>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<div class=container-fluid>
+<div class="navbar-header page-scroll">
+<button type=button class=navbar-toggle>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=/>BawaDev</a>
+</div>
+<div id=huxblog_navbar>
+<div class=navbar-collapse>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href=/>All Posts</a>
+</li>
+<li><a href=/gallery//>Gallery</a></li>
+<li><a href=/about//>ABOUT</a></li>
+<li>
+<a href=/search><i class="fa fa-search"></i></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<script>var $body=document.body,$toggle=document.querySelector('.navbar-toggle'),$navbar=document.querySelector('#huxblog_navbar'),$collapse=document.querySelector('.navbar-collapse');$toggle.addEventListener('click',handleMagic);function handleMagic(a){$navbar.className.indexOf('in')>0?($navbar.className=" ",setTimeout(function(){$navbar.className.indexOf('in')<0&&($collapse.style.height="0px")},400)):($collapse.style.height="auto",$navbar.className+=" in")}</script>
+<style type=text/css>header.intro-header{position:relative;background-image:url(https://www.docker.com/wp-content/uploads/2022/12/Docker-Temporary-Image-Social-Thumbnail-1200x630-1.png)}header.intro-header::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.2)}</style>
+<header class=intro-header>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class=post-heading>
+<div class=tags>
+<a class=tag href=/%20/tags/java title=Java>
+Java
+</a>
+<a class=tag href=/%20/tags/docker title=Docker>
+Docker
+</a>
+<a class=tag href=/%20/tags/ci/cd title=CI/CD>
+CI/CD
+</a>
+</div>
+<h1>Introduction to Docker</h1>
+<h2 class=subheading>A zero to hero docker guide for java developers</h2>
+<span class=meta>
+</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<article>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+post-container">
+<p>Docker is a platform designed to help developers build, ship, and run applications using containerization. It has revolutionized the way applications are deployed and managed, making the process more efficient and reliable. This article will provide an in-depth look at Docker, its benefits, installation, and practical usage.</p>
+<h2 id=why-docker>Why Docker?</h2>
+<h3 id=compatibility>Compatibility</h3>
+<p>One of the major challenges in software development is ensuring that an application runs smoothly across different environments. Docker addresses this issue by packaging the application and all its dependencies into a single container. This container can be run on any system that supports Docker, ensuring consistent behavior regardless of the underlying environment. This eliminates the infamous &ldquo;it works on my machine&rdquo; problem, significantly enhancing compatibility and reliability.</p>
+<h3 id=reduced-setup-time>Reduced Setup Time</h3>
+<p>Setting up development environments can be time-consuming and error-prone. Docker simplifies this process by allowing you to define the entire environment in a <code>Dockerfile</code>. This file specifies all the dependencies, configurations, and setup commands needed to run the application. With Docker, you can spin up a complete environment in a matter of seconds, drastically reducing setup time and minimizing errors.</p>
+<h3 id=separate-environments>Separate Environments</h3>
+<p>Docker makes it easy to create and manage separate environments for development, testing, and production. Each environment can be encapsulated in its own container, ensuring that changes in one environment do not affect others. This isolation helps maintain consistency and stability across different stages of the development lifecycle.</p>
+<h2 id=how-docker-operates-on-a-pc-and-utilizes-resources>How Docker Operates on a PC and Utilizes Resources</h2>
+<p>Docker operates by creating lightweight, isolated containers that share the host operating system&rsquo;s kernel. This approach allows multiple containers to run on a single physical machine with minimal overhead. Docker utilizes a client-server architecture, where the Docker client communicates with the Docker daemon (server) to build, run, and manage containers.</p>
+<h3 id=resource-utilization-and-performance>Resource Utilization and Performance</h3>
+<p>Containers are more efficient than traditional virtual machines because they share the host OS kernel and do not require a full guest OS per instance. This reduces the amount of resources needed and allows for faster startup times. Docker also provides tools to monitor and manage resource usage, ensuring that containers do not consume more than their allocated share of CPU, memory, and storage.</p>
+<h2 id=key-docker-terminology>Key Docker Terminology</h2>
+<p>
+<img src="https://media.dev.to/cdn-cgi/image/width=1600,height=900,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Frdlipe7r7g8fenj7ahg4.png" alt="alt text">
+</p>
+<h3 id=dockerfile>Dockerfile</h3>
+<p>A <code>Dockerfile</code> is a script that contains a series of instructions on how to build a Docker image. It specifies the base image, environment variables, commands to run, and other necessary configurations.</p>
+<h3 id=docker-daemon>Docker Daemon</h3>
+<p>The Docker daemon (<code>dockerd</code>) is a background service responsible for managing Docker containers, images, networks, and storage volumes. It listens for Docker API requests and handles container operations.</p>
+<h3 id=docker-image>Docker Image</h3>
+<p>A Docker image is a read-only template used to create Docker containers. Images are built from Dockerfiles and can be stored in registries like Docker Hub.</p>
+<h3 id=docker-container>Docker Container</h3>
+<p>A Docker container is a runnable instance of a Docker image. Containers can be started, stopped, moved, and deleted. Each container is isolated from others, providing a secure environment for applications.</p>
+<p>
+<img src=https://lemariva.com/storage/app/media/blog_imgs/analytics/docker/docker_architecture.svg alt="alt text">
+</p>
+<h2 id=how-to-install-docker>How to Install Docker</h2>
+<h3 id=installing-docker-on-ubuntu>Installing Docker on Ubuntu</h3>
+<p>If you are trying docker on windows installing docker on windows is very easy with docker desktop.
+Just go to the official site on docker installing (<a href=https://docs.docker.com/engine/install/>https://docs.docker.com/engine/install/</a>) and follow along the instructions.</p>
+<h3 id=installing-docker-on-ubuntu-1>Installing Docker on Ubuntu</h3>
+<p>If you are trying to setup docker on your linux server you can quickly start with following commands</p>
+<ol>
+<li>
+<p><strong>Update your package index:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo apt-get update
+</code></pre></div></li>
+<li>
+<p><strong>Install necessary packages:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo apt-get install <span style=color:#f1fa8c>\
+</span><span style=color:#f1fa8c></span>    ca-certificates <span style=color:#f1fa8c>\
+</span><span style=color:#f1fa8c></span>    curl <span style=color:#f1fa8c>\
+</span><span style=color:#f1fa8c></span>    gnupg <span style=color:#f1fa8c>\
+</span><span style=color:#f1fa8c></span>    lsb-release
+</code></pre></div></li>
+<li>
+<p><strong>Add Docker&rsquo;s official GPG key:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</code></pre></div></li>
+<li>
+<p><strong>Set up the stable repository:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#8be9fd;font-style:italic>echo</span> <span style=color:#f1fa8c>\
+</span><span style=color:#f1fa8c></span>  <span style=color:#f1fa8c>&#34;deb [arch=</span><span style=color:#ff79c6>$(</span>dpkg --print-architecture<span style=color:#ff79c6>)</span><span style=color:#f1fa8c> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+</span><span style=color:#f1fa8c>  </span><span style=color:#ff79c6>$(</span>lsb_release -cs<span style=color:#ff79c6>)</span><span style=color:#f1fa8c> stable&#34;</span> | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre></div></li>
+<li>
+<p><strong>Install Docker Engine:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre></div></li>
+<li>
+<p><strong>Verify the installation:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo docker run hello-world
+</code></pre></div></li>
+</ol>
+<h2 id=how-to-dockerize-an-application>How to Dockerize an Application</h2>
+<h2 id=dockerizing-an-application-in-short>Dockerizing an Application (in short)</h2>
+<p><strong>1. Create application:</strong>
+I think you know how 😍</p>
+<p><strong>2. Create a Dockerfile:</strong></p>
+<ul>
+<li>Base image (e.g., Ubuntu)</li>
+<li>Install dependencies</li>
+<li>Copy application code</li>
+<li>Set environment variables</li>
+<li>Expose ports</li>
+<li>Define startup command</li>
+</ul>
+<p><strong>3. Build the Image:</strong>
+<code>docker build</code> command</p>
+<p><strong>4. Run the Container:</strong>
+<code>docker run</code> command</p>
+<h3 id=dockerizing-a-simple-spring-boot-application>Dockerizing a Simple Spring Boot Application</h3>
+<p>Here we&rsquo;ll try to dockerize a simple hellow world application with spring boot. But you can dockerize anyting even the moon if your machine is big enough 😂</p>
+<h4 id=create-a-simple-spring-boot-application>Create a Simple Spring boot application</h4>
+<p>You can create your own spring boot hellow world application by your self. If you are reading this I know you can. To make that easier I created a simple application repo. you cand just clone and start from there too. ( <a href=https://github.com/bawadev/spring-boot-docker/>https://github.com/bawadev/spring-boot-docker/</a> )</p>
+<h4 id=create-a-dockerfile>Create a Dockerfile</h4>
+<ol>
+<li>
+<p><strong>Create a file named <code>Dockerfile</code> :</strong>
+In the root directory of your Spring Boot project create a file named Dockerfile with the following content</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style=color:#ff79c6>FROM</span><span style=color:#f1fa8c> openjdk:8</span>
+<span style=color:#ff79c6>EXPOSE</span><span style=color:#f1fa8c> 8080</span>
+<span style=color:#ff79c6>ADD</span> target/spring-boot-docker.jar spring-boot-docker.jar
+<span style=color:#ff79c6>ENTRYPOINT</span> [<span style=color:#f1fa8c>&#34;java&#34;</span>,<span style=color:#f1fa8c>&#34;-jar&#34;</span>,<span style=color:#f1fa8c>&#34;/spring-boot-docker.jar&#34;</span>]
+</code></pre></div><ul>
+<li><code>FROM openjdk:8</code> : This line tells Docker to use the official OpenJdk8.</li>
+<li><code>EXPOSE 8080</code> : This line tells Docker that the container listens on port</li>
+<li><code>ADD target/spring-boot-docker.jar spring-boot-docker.jar</code> : This line tells docker to get the artifact named spring-boot-docker.jar from target</li>
+<li><code>ENTRYPOINT ["java","-jar","/spring-boot-docker.jar"]</code> : This instructs docker to how to form the run the jar file inside the container.</li>
+</ul>
+<p>Docker file is an essentially like a instruction to wrap an image with other dependencies. In here it says lay a jdk first, then put jar on top of that. Like wise you can add dependencies with their versions as layers inside an image.</p>
+</li>
+<li>
+<p><strong>Build the Docker image:</strong>
+Open an terminal at the root of the project and run</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker build -t spring-boot-docker .
+</code></pre></div></li>
+<li>
+<p><strong>Run the Docker container:</strong>
+then run</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -p 8080:8080 spring-boot-docker
+</code></pre></div></li>
+</ol>
+<p>In here 8080:8080 what you are doing is mapping the container port with your computer port. Then when ever a request to 8080 in your computer will be handled by the container application</p>
+<ol start=4>
+<li><strong>Test the application using <code>curl</code>:</strong>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl http://localhost:8080
+</code></pre></div></li>
+</ol>
+<h2 id=useful-docker-commands>Useful Docker Commands</h2>
+<p>Finally let me put some usefull docker commands for you to memorize and flex on other people who don&rsquo;t konw docker 😂</p>
+<h3 id=docker-run><code>docker run</code></h3>
+<p>Runs a command in a new container.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -p 8080:8080 spring-boot-docker
+</code></pre></div><ul>
+<li><code>-p 8080:8080</code>: Maps port 8080 of the container to port 8080 on the host.</li>
+</ul>
+<h3 id=docker-ps><code>docker ps</code></h3>
+<p>Lists running containers.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker ps
+</code></pre></div><h3 id=docker-ps--a><code>docker ps -a</code></h3>
+<p>Lists all containers, including stopped ones.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker ps -a
+</code></pre></div><h3 id=docker-rmi><code>docker rmi</code></h3>
+<p>Removes one or more Docker images.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker rmi spring-boot-docker
+</code></pre></div><h3 id=docker-pull><code>docker pull</code></h3>
+<p>Pulls an image from a Docker registry.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker pull ubuntu
+</code></pre></div><h3 id=docker-images><code>docker images</code></h3>
+<p>Lists all Docker images on the host.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker images
+</code></pre></div><h3 id=docker-exec><code>docker exec</code></h3>
+<p>Runs a command in a running container.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker <span style=color:#8be9fd;font-style:italic>exec</span> -it &lt;container_id&gt; /bin/bash
+</code></pre></div><p>By understanding and utilizing these commands, you can effectively manage Docker containers and images.</p>
+<h2 id=conclusion>Conclusion</h2>
+<p>Docker provides a powerful and efficient way to develop, deploy, and manage applications. Its ability to ensure compatibility, reduce setup times, and maintain separate environments makes it an invaluable tool for developers. By following the steps outlined in this article, you can start using Docker to streamline your development workflow and improve the reliability of your applications.</p>
+<div class=zs-modal-bg></div>
+<div class=zs-modal-box>
+<div class=zs-modal-head>
+<button type=button class=close>×</button>
+<span class=author><a href=https://bawadev.github.io><img src=/img/favicon.png>BawaDev</a></span>
+<p class=tip><i></i><span>真诚赞赏，手留余香</span></p>
+</div>
+<div class=zs-modal-body>
+<div class=zs-modal-btns>
+<button class="btn btn-blink" data-num=2>2元</button>
+<button class="btn btn-blink" data-num=5>5元</button>
+<button class="btn btn-blink" data-num=10>10元</button>
+<button class="btn btn-blink" data-num=50>50元</button>
+<button class="btn btn-blink" data-num=100>100元</button>
+<button class="btn btn-blink" data-num=1>任意金额</button>
+</div>
+<div class=zs-modal-pay>
+<button class="btn btn-bred" id=pay-text>2元</button>
+<p>使用<span id=pay-type>微信</span>扫描二维码完成支付</p>
+<img src=/img/reward/wechat-2.png id=pay-image>
+</div>
+</div>
+<div class=zs-modal-footer>
+<label><input type=radio name=zs-type value=wechat class=zs-type checked><span><span class=zs-wechat><img src=/img/reward/wechat-btn.png></span></label>
+<label><input type=radio name=zs-type value=alipay class=zs-type class=zs-alipay><img src=/img/reward/alipay-btn.png></span></label>
+</div>
+</div>
+<script type=text/javascript src=/js/reward.js></script>
+<hr>
+<ul class=pager>
+<li class=previous>
+<a href=/post/dev-java-springboot-annotations/ data-toggle=tooltip data-placement=top title="Introduction to Docker">&larr;
+Previous Post</a>
+</li>
+<li class=next>
+<a href=/post/dev-immutability/ data-toggle=tooltip data-placement=top title="Embracing Immutability">Next
+Post &rarr;</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-2 col-lg-offset-0
+visible-lg-block
+sidebar-container
+catalog-container">
+<div class=side-catalog>
+<section class="visible-md visible-lg">
+<hr><h5><a href=/about>ABOUT AUTHOR</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+<ul class=list-inline>
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fa fa-circle fa-stack-2x"></i>
+<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/pasindu-munasinghe/>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<hr class="hidden-sm hidden-xs">
+<h5>
+<a class=catalog-toggle href=#>CATALOG</a>
+</h5>
+<ul class=catalog-body></ul>
+</div>
+</div>
+<div class="col-lg-8 col-lg-offset-2
+col-md-10 col-md-offset-1
+sidebar-container">
+<section>
+<hr class="hidden-sm hidden-xs">
+<h5><a href=/tags/>FEATURED TOPIC</a></h5>
+<div class=tags>
+<a href=/%20/tags/ci/cd title=ci/cd>
+ci/cd
+</a>
+<a href=/%20/tags/design-principles title=design-principles>
+design-principles
+</a>
+<a href=/%20/tags/development title=development>
+development
+</a>
+<a href=/%20/tags/developments title=developments>
+developments
+</a>
+<a href=/%20/tags/docker title=docker>
+docker
+</a>
+<a href=/%20/tags/front-end-developemnt title=front-end-developemnt>
+front-end-developemnt
+</a>
+<a href=/%20/tags/functional-interfaces title=functional-interfaces>
+functional-interfaces
+</a>
+<a href=/%20/tags/immutability title=immutability>
+immutability
+</a>
+<a href=/%20/tags/java title=java>
+java
+</a>
+<a href=/%20/tags/java-lambda title=java-lambda>
+java-lambda
+</a>
+<a href=/%20/tags/middleware title=middleware>
+middleware
+</a>
+<a href=/%20/tags/psychology title=psychology>
+psychology
+</a>
+<a href=/%20/tags/react title=react>
+react
+</a>
+<a href=/%20/tags/redux title=redux>
+redux
+</a>
+<a href=/%20/tags/security title=security>
+security
+</a>
+<a href=/%20/tags/solid title=solid>
+solid
+</a>
+<a href=/%20/tags/spring-annotations title=spring-annotations>
+spring-annotations
+</a>
+<a href=/%20/tags/spring-boot title=spring-boot>
+spring-boot
+</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div class="visible-xs-block hidden-sm hidden-md hidden-lg">
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<section class="visible-md visible-lg visible-sm visible-xs-block">
+<hr><h5><a href=/about>ABOUT</a></h5>
+<div class=short-about>
+<a href=/about>
+<img src=/img/zhaohuabing.png alt=avatar style=max-width:200px;height:auto;cursor:pointer>
+</a>
+<p>Pasindu Bawantha, Consultant, Software Engineer, Tech Writer</p>
+</div>
+</section>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</div>
+<footer>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<ul class="list-inline text-center">
+<li>
+<a href=mailto:inbox.bawantha@gmail.com>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=/your%20wechat%20qr%20code%20image>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://github.com/yourgithub>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://www.linkedin.com/in/pasindu-munasinghe/>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a target=_blank href=https://stackoverflow.com/users/yourstackoverflowid>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+<li>
+<a href rel=alternate type=application/rss+xml title=BawaDev>
+<span class="fa-stack fa-lg">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</li>
+</ul>
+<p class="copyright text-muted">
+Copyright &copy; BawaDev 2024
+<br>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script>function loadAsync(f,b){var c=document,d='script',a=c.createElement(d),e=c.getElementsByTagName(d)[0];a.src=f,b&&a.addEventListener('load',function(a){b(null,a)},!1),e.parentNode.insertBefore(a,e)}</script>
+<script>$('#tag_cloud').length!==0&&loadAsync("/js/jquery.tagcloud.js",function(){$.fn.tagcloud.defaults={color:{start:'#bbbbee',end:'#0085a1'}},$('#tag_cloud a').tagcloud()})</script>
+<script>loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js",function(){var a=document.querySelector("nav");a&&FastClick.attach(a)})</script>
+<script type=text/javascript>function generateCatalog(a){_containerSelector='div.post-container';var h=$(_containerSelector),c,d,e,f,g,b;return c=h.find('h1,h2,h3,h4,h5,h6'),$(a).html(''),c.each(function(){d=$(this).prop('tagName').toLowerCase(),g="#"+$(this).prop('id'),e=$(this).text(),b=$('<a href="'+g+'" rel="nofollow">'+e+'</a>'),f=$('<li class="'+d+'_nav"></li>').append(b),$(a).append(f)}),!0}generateCatalog(".catalog-body"),$(".catalog-toggle").click(function(a){a.preventDefault(),$('.side-catalog').toggleClass("fold")}),loadAsync("/js/jquery.nav.js",function(){$('.catalog-body').onePageNav({currentClass:"active",changeHash:!1,easing:"swing",filter:"",scrollSpeed:700,scrollOffset:0,scrollThreshold:.2,begin:null,end:null,scrollChange:null,padding:80})})</script>
+</body>
+</html>
